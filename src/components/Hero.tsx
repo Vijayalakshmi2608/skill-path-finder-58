@@ -17,7 +17,9 @@ const badgePositions = [
   "top-[45%] right-[2%] animate-float-delayed",
 ];
 
-const Hero = () => (
+const Hero = () => {
+  const navigate = useNavigate();
+  return (
   <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
     <div className="absolute inset-0 dot-pattern opacity-40" />
     <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]" />
