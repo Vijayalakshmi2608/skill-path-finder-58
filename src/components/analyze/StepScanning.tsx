@@ -53,7 +53,7 @@ const StepScanning = () => {
   // Auto redirect after ~5 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/");
+      navigate("/results");
     }, 6000);
     return () => clearTimeout(timer);
   }, [navigate]);
