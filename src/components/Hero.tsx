@@ -43,7 +43,7 @@ const Hero = () => {
         Upload your resume, pick your dream job — SkillScan's AI reveals exactly what's missing and builds your personal roadmap to close the gap in 30 days.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <button className="group px-8 py-4 text-base font-semibold bg-primary text-primary-foreground rounded-lg glow-box-blue hover:brightness-110 transition-all duration-300 flex items-center gap-2">
+        <button onClick={() => navigate("/analyze")} className="group px-8 py-4 text-base font-semibold bg-primary text-primary-foreground rounded-lg glow-box-blue hover:brightness-110 transition-all duration-300 flex items-center gap-2">
           Analyze My Resume Free
           <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
         </button>
@@ -80,6 +80,7 @@ const Hero = () => {
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default Hero;
