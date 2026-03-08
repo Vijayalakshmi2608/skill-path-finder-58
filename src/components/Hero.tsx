@@ -1,4 +1,5 @@
 import { ArrowRight, Play } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const badges = [
   { text: "Python +45%", color: "bg-primary/20 text-primary border-primary/30" },
