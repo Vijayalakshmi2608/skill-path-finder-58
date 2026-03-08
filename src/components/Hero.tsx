@@ -1,4 +1,5 @@
 import { ArrowRight, Play } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const badges = [
   { text: "Python +45%", color: "bg-primary/20 text-primary border-primary/30" },
@@ -16,7 +17,9 @@ const badgePositions = [
   "top-[45%] right-[2%] animate-float-delayed",
 ];
 
-const Hero = () => (
+const Hero = () => {
+  const navigate = useNavigate();
+  return (
   <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
     <div className="absolute inset-0 dot-pattern opacity-40" />
     <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]" />
@@ -40,7 +43,7 @@ const Hero = () => (
         Upload your resume, pick your dream job — SkillScan's AI reveals exactly what's missing and builds your personal roadmap to close the gap in 30 days.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <button className="group px-8 py-4 text-base font-semibold bg-primary text-primary-foreground rounded-lg glow-box-blue hover:brightness-110 transition-all duration-300 flex items-center gap-2">
+        <button onClick={() => navigate("/analyze")} className="group px-8 py-4 text-base font-semibold bg-primary text-primary-foreground rounded-lg glow-box-blue hover:brightness-110 transition-all duration-300 flex items-center gap-2">
           Analyze My Resume Free
           <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
         </button>
@@ -77,6 +80,7 @@ const Hero = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default Hero;
