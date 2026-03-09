@@ -14,6 +14,7 @@ import MockInterviewPage from "./pages/MockInterviewPage";
 import StudyBuddyPage from "./pages/StudyBuddyPage";
 import PortfolioPage from "./pages/PortfolioPage";
 import LeaderboardPage from "./pages/LeaderboardPage";
+import ResumeAnalysisPage from "./pages/ResumeAnalysisPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/study-buddy" element={<StudyBuddyPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/leaderboard" element={<LeaderboardPage />} />
+          <Route path="/resume-analysis" element={<ResumeAnalysisPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
