@@ -6,6 +6,7 @@ import CompetitiveAnalysis from "@/components/results/CompetitiveAnalysis";
 import QuickWins from "@/components/results/QuickWins";
 import InterviewPredictor from "@/components/results/InterviewPredictor";
 import CompanyReadiness from "@/components/results/CompanyReadiness";
+import CareerTree from "@/components/results/CareerTree";
 import { useNavigate } from "react-router-dom";
 
 const floatingWords = [
@@ -141,6 +142,9 @@ const ResultsPage = () => {
           <QuickWins />
         </div>
       </section>
+
+      {/* SECTION 6.6 — Career Tree */}
+      <CareerTree />
 
       {/* SECTION 6.5 — Interview Predictor */}
       <section className="py-16 border-b border-border bg-surface-secondary">
