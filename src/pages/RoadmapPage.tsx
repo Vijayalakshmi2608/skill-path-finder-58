@@ -5,7 +5,9 @@ import RoadmapHeader from "@/components/roadmap/RoadmapHeader";
 import WeekOverview from "@/components/roadmap/WeekOverview";
 import DayByDay from "@/components/roadmap/DayByDay";
 import ResourcesLibrary from "@/components/roadmap/ResourcesLibrary";
+import PortfolioCTA from "@/components/roadmap/PortfolioCTA";
 import ProgressTracker from "@/components/roadmap/ProgressTracker";
+import ShareExport from "@/components/roadmap/ShareExport";
 import ShareExport from "@/components/roadmap/ShareExport";
 
 const RoadmapPage = () => {
@@ -34,6 +36,7 @@ const RoadmapPage = () => {
         <WeekOverview />
         <DayByDay completedDays={completedDays} toggleDay={toggleDay} />
         <ResourcesLibrary />
+        <PortfolioCTA completedDays={completedDays.size} />
         <ProgressTracker completedDays={completedDays.size} streak={streak} />
         <ShareExport />
       </main>
