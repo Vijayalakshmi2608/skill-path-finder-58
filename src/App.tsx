@@ -9,6 +9,7 @@ import ResultsPage from "./pages/ResultsPage";
 import RoadmapPage from "./pages/RoadmapPage";
 import ChatPage from "./pages/ChatPage";
 import CollegeDashboard from "./pages/CollegeDashboard";
+import MarketIntelligence from "./pages/MarketIntelligence";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/roadmap" element={<RoadmapPage />} />
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/college-dashboard" element={<CollegeDashboard />} />
+          <Route path="/market-intelligence" element={<MarketIntelligence />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
