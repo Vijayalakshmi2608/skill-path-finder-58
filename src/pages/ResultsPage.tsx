@@ -1,9 +1,10 @@
-import { Zap, Download, Share2, ArrowRight } from "lucide-react";
+import { Zap, Download, Share2, ArrowRight, MessageSquare } from "lucide-react";
 import ReadinessGauge from "@/components/results/ReadinessGauge";
 import SkillBreakdown from "@/components/results/SkillBreakdown";
 import SkillRadar from "@/components/results/SkillRadar";
 import CompetitiveAnalysis from "@/components/results/CompetitiveAnalysis";
 import QuickWins from "@/components/results/QuickWins";
+import InterviewPredictor from "@/components/results/InterviewPredictor";
 import { useNavigate } from "react-router-dom";
 
 const floatingWords = [
@@ -24,15 +25,19 @@ const ResultsPage = () => {
             <span className="text-foreground">Skill</span>
             <span className="text-primary">Scan</span>
           </a>
-          <button onClick={() => navigate("/")} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-            ← Home
-          </button>
+          <div className="flex gap-3">
+            <button onClick={() => navigate("/chat")} className="flex items-center gap-1.5 text-sm text-primary hover:brightness-110 transition-colors">
+              <MessageSquare className="w-4 h-4" /> AI Chat
+            </button>
+            <button onClick={() => navigate("/")} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              ← Home
+            </button>
+          </div>
         </div>
       </div>
 
       {/* SECTION 1 — Report Header */}
       <section className="relative py-12 overflow-hidden border-b border-border">
-        {/* Floating words */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
           {floatingWords.map((w, i) => (
             <span
@@ -61,7 +66,7 @@ const ResultsPage = () => {
                 <span className="px-3 py-1.5 text-sm rounded-full bg-primary/15 text-primary border border-primary/30 font-medium">
                   Software Engineer @ Google — Entry Level
                 </span>
-                <span className="text-xs text-muted-foreground">Generated Mar 8, 2026</span>
+                <span className="text-xs text-muted-foreground">Generated {new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
               </div>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -71,7 +76,10 @@ const ResultsPage = () => {
               <button className="flex items-center gap-2 px-4 py-2.5 text-sm border border-border rounded-lg text-muted-foreground hover:text-foreground hover:border-muted-foreground/50 transition-all">
                 <Share2 className="w-4 h-4" /> Share Report
               </button>
-              <button className="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold bg-primary text-primary-foreground rounded-lg glow-box-blue hover:brightness-110 transition-all group">
+              <button
+                onClick={() => navigate("/roadmap")}
+                className="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold bg-primary text-primary-foreground rounded-lg glow-box-blue hover:brightness-110 transition-all group"
+              >
                 Start Roadmap
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
@@ -130,6 +138,17 @@ const ResultsPage = () => {
         </div>
       </section>
 
+      {/* SECTION 6.5 — Interview Predictor */}
+      <section className="py-16 border-b border-border bg-surface-secondary">
+        <div className="section-container max-w-3xl">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-2">
+            🎯 AI Interview Predictor
+          </h2>
+          <p className="text-muted-foreground mb-8">Get AI-powered predictions for your target company interviews</p>
+          <InterviewPredictor />
+        </div>
+      </section>
+
       {/* SECTION 7 — CTA Banner */}
       <section className="py-16">
         <div className="section-container">
@@ -140,10 +159,22 @@ const ResultsPage = () => {
             <p className="text-muted-foreground mb-8 text-lg">
               Your personalized 30-day roadmap is waiting →
             </p>
-            <button className="px-10 py-4 text-base font-semibold bg-primary text-primary-foreground rounded-lg glow-box-blue hover:brightness-110 transition-all duration-300 inline-flex items-center gap-2 group">
-              View My Roadmap
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </button>
+            <div className="flex flex-wrap justify-center gap-4">
+              <button
+                onClick={() => navigate("/roadmap")}
+                className="px-10 py-4 text-base font-semibold bg-primary text-primary-foreground rounded-lg glow-box-blue hover:brightness-110 transition-all duration-300 inline-flex items-center gap-2 group"
+              >
+                View My Roadmap
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </button>
+              <button
+                onClick={() => navigate("/chat")}
+                className="px-10 py-4 text-base font-semibold border border-border text-foreground rounded-lg hover:border-primary/50 transition-all duration-300 inline-flex items-center gap-2"
+              >
+                <MessageSquare className="w-5 h-5" />
+                Ask AI Career Advisor
+              </button>
+            </div>
           </div>
         </div>
       </section>
