@@ -1,1 +1,16 @@
 project_id = "lleyggfsdxrcepxcjmem"
+
+[functions.parse-resume]
+verify_jwt = false
+
+[functions.analyze-skills]
+verify_jwt = false
+
+[functions.generate-roadmap]
+verify_jwt = false
+
+[functions.career-chat]
+verify_jwt = false
+
+[functions.interview-predictor]
+verify_jwt = false
