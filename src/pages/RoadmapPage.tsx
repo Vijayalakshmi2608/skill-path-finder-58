@@ -8,7 +8,6 @@ import ResourcesLibrary from "@/components/roadmap/ResourcesLibrary";
 import PortfolioCTA from "@/components/roadmap/PortfolioCTA";
 import ProgressTracker from "@/components/roadmap/ProgressTracker";
 import ShareExport from "@/components/roadmap/ShareExport";
-import ShareExport from "@/components/roadmap/ShareExport";
 
 const RoadmapPage = () => {
   const [completedDays, setCompletedDays] = useState<Set<number>>(new Set());
