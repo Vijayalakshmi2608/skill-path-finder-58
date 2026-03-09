@@ -1,37 +1,59 @@
 import { useState, useCallback } from "react";
-import { Upload, FileText, Linkedin, ChevronDown, ChevronUp, ArrowRight, Shield, Zap, Target } from "lucide-react";
+import { Upload, FileText, Linkedin, ChevronDown, ChevronUp, ArrowRight, Shield, Zap, Target, Loader2 } from "lucide-react";
 import { useAnalyze } from "@/contexts/AnalyzeContext";
 import { cn } from "@/lib/utils";
+import { parseResume } from "@/lib/ai";
+import { toast } from "sonner";
 
 interface StepUploadProps {
   onNext: () => void;
 }
-
-const mockExtract = () => ({
-  detectedName: "Rahul Sharma",
-  detectedSkills: ["Python", "JavaScript", "React", "SQL"],
-  detectedExperience: "2 internships detected",
-  detectedEducation: "B.Tech CSE, 3rd Year",
-});
 
 const StepUpload = ({ onNext }: StepUploadProps) => {
   const { data, setData } = useAnalyze();
   const [dragOver, setDragOver] = useState(false);
   const [showTextarea, setShowTextarea] = useState(false);
   const [extracted, setExtracted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [linkedinUrl, setLinkedinUrl] = useState(data.linkedinUrl || "");
   const [resumeText, setResumeText] = useState(data.resumeText || "");
+
+  const processResume = useCallback(async (text: string) => {
+    setLoading(true);
+    try {
+      const parsed = await parseResume(text);
+      setData({
+        parsedResume: parsed,
+        detectedName: parsed.name,
+        detectedSkills: parsed.skills.map((s) => s.name),
+        detectedExperience: parsed.experience.length > 0
+          ? `${parsed.experience.length} role(s): ${parsed.experience.map((e) => e.title).join(", ")}`
+          : "No experience detected",
+        detectedEducation: parsed.education
+          ? `${parsed.education.degree} ${parsed.education.field}, ${parsed.education.year}`
+          : "Not detected",
+        resumeText: text,
+      });
+      setExtracted(true);
+    } catch (err: any) {
+      console.error("Resume parse error:", err);
+      toast.error(err.message || "Failed to parse resume. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }, [setData]);
 
   const handleFile = useCallback(
     (file: File) => {
       setData({ fileName: file.name });
-      setTimeout(() => {
-        const mock = mockExtract();
-        setData(mock);
-        setExtracted(true);
-      }, 800);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const text = e.target?.result as string;
+        if (text) processResume(text);
+      };
+      reader.readAsText(file);
     },
-    [setData]
+    [setData, processResume]
   );
 
   const onDrop = (e: React.DragEvent) => {
@@ -49,19 +71,13 @@ const StepUpload = ({ onNext }: StepUploadProps) => {
   const handleLinkedin = () => {
     if (!linkedinUrl.trim()) return;
     setData({ linkedinUrl });
-    setTimeout(() => {
-      setData(mockExtract());
-      setExtracted(true);
-    }, 800);
+    // LinkedIn URL would need scraping — use as context hint
+    toast.info("LinkedIn import is coming soon. Please paste your resume text instead.");
   };
 
   const handlePasteResume = () => {
     if (!resumeText.trim()) return;
-    setData({ resumeText });
-    setTimeout(() => {
-      setData(mockExtract());
-      setExtracted(true);
-    }, 800);
+    processResume(resumeText);
   };
 
   const info = [
@@ -84,7 +100,7 @@ const StepUpload = ({ onNext }: StepUploadProps) => {
             <div>
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-secondary">✅</span>
-                <span className="text-muted-foreground">Skills detected:</span>
+                <span className="text-muted-foreground">Skills detected ({data.detectedSkills?.length || 0}):</span>
               </div>
               <div className="flex flex-wrap gap-2 ml-8">
                 {data.detectedSkills?.map((s) => (
@@ -104,6 +120,11 @@ const StepUpload = ({ onNext }: StepUploadProps) => {
               <span className="text-muted-foreground">Education:</span>
               <span className="text-foreground font-medium">{data.detectedEducation}</span>
             </div>
+            {data.parsedResume?.summary && (
+              <div className="mt-4 p-3 bg-primary/5 border border-primary/20 rounded-lg">
+                <p className="text-sm text-muted-foreground italic">{data.parsedResume.summary}</p>
+              </div>
+            )}
           </div>
           <button
             onClick={onNext}
@@ -113,7 +134,10 @@ const StepUpload = ({ onNext }: StepUploadProps) => {
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </button>
           <button
-            onClick={() => { setExtracted(false); setData({ detectedName: undefined, detectedSkills: undefined, detectedExperience: undefined, detectedEducation: undefined, fileName: undefined }); }}
+            onClick={() => {
+              setExtracted(false);
+              setData({ detectedName: undefined, detectedSkills: undefined, detectedExperience: undefined, detectedEducation: undefined, fileName: undefined, parsedResume: undefined });
+            }}
             className="w-full mt-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             Re-upload a different resume
@@ -127,95 +151,103 @@ const StepUpload = ({ onNext }: StepUploadProps) => {
     <div className="flex flex-col lg:flex-row gap-8 animate-fade-in-up">
       {/* Left panel */}
       <div className="flex-[3] space-y-6">
-        {/* Upload zone */}
-        <label
-          onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
-          onDragLeave={() => setDragOver(false)}
-          onDrop={onDrop}
-          className={cn(
-            "flex flex-col items-center justify-center gap-4 p-12 rounded-xl border-2 border-dashed cursor-pointer transition-all duration-300",
-            dragOver
-              ? "border-primary bg-primary/10 glow-box-blue"
-              : "border-border hover:border-primary/50 hover:bg-primary/5"
-          )}
-        >
-          <Upload className={cn("w-12 h-12 transition-colors", dragOver ? "text-primary" : "text-muted-foreground")} />
-          <div className="text-center">
-            <p className="text-lg font-medium text-foreground">Drop your resume here</p>
-            <p className="text-sm text-muted-foreground mt-1">or click to browse</p>
-          </div>
-          <div className="flex gap-2">
-            {["PDF", "DOCX", "TXT"].map((f) => (
-              <span key={f} className="px-2 py-0.5 text-xs rounded bg-muted text-muted-foreground">{f}</span>
-            ))}
-          </div>
-          <input type="file" className="hidden" accept=".pdf,.docx,.txt" onChange={onFileSelect} />
-        </label>
-
-        {data.fileName && !extracted && (
-          <div className="card-surface p-4 flex items-center gap-3">
-            <FileText className="w-5 h-5 text-primary" />
-            <span className="text-foreground text-sm">{data.fileName}</span>
-            <div className="ml-auto w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+        {loading && (
+          <div className="card-surface p-8 flex flex-col items-center gap-4">
+            <Loader2 className="w-10 h-10 text-primary animate-spin" />
+            <p className="text-foreground font-medium">AI is analyzing your resume...</p>
+            <p className="text-sm text-muted-foreground">This usually takes 5-10 seconds</p>
           </div>
         )}
 
-        <div className="flex items-center gap-4">
-          <div className="flex-1 h-px bg-border" />
-          <span className="text-xs text-muted-foreground uppercase tracking-wider">or</span>
-          <div className="flex-1 h-px bg-border" />
-        </div>
+        {!loading && (
+          <>
+            {/* Upload zone */}
+            <label
+              onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+              onDragLeave={() => setDragOver(false)}
+              onDrop={onDrop}
+              className={cn(
+                "flex flex-col items-center justify-center gap-4 p-12 rounded-xl border-2 border-dashed cursor-pointer transition-all duration-300",
+                dragOver
+                  ? "border-primary bg-primary/10 glow-box-blue"
+                  : "border-border hover:border-primary/50 hover:bg-primary/5"
+              )}
+            >
+              <Upload className={cn("w-12 h-12 transition-colors", dragOver ? "text-primary" : "text-muted-foreground")} />
+              <div className="text-center">
+                <p className="text-lg font-medium text-foreground">Drop your resume here</p>
+                <p className="text-sm text-muted-foreground mt-1">or click to browse</p>
+              </div>
+              <div className="flex gap-2">
+                {["PDF", "DOCX", "TXT"].map((f) => (
+                  <span key={f} className="px-2 py-0.5 text-xs rounded bg-muted text-muted-foreground">{f}</span>
+                ))}
+              </div>
+              <input type="file" className="hidden" accept=".pdf,.docx,.txt" onChange={onFileSelect} />
+            </label>
 
-        {/* LinkedIn */}
-        <div className="space-y-2">
-          <div className="flex items-center gap-2 mb-1">
-            <Linkedin className="w-4 h-4 text-primary" />
-            <span className="text-sm text-muted-foreground">Paste LinkedIn Profile URL</span>
-          </div>
-          <div className="flex gap-2">
-            <input
-              value={linkedinUrl}
-              onChange={(e) => setLinkedinUrl(e.target.value)}
-              placeholder="https://linkedin.com/in/yourname"
-              className="flex-1 px-4 py-3 bg-muted border border-border rounded-lg text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
-            />
-            <button onClick={handleLinkedin} className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:brightness-110 transition-all">
-              Import
-            </button>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <div className="flex-1 h-px bg-border" />
-          <span className="text-xs text-muted-foreground uppercase tracking-wider">or</span>
-          <div className="flex-1 h-px bg-border" />
-        </div>
-
-        {/* Paste text */}
-        <div>
-          <button
-            onClick={() => setShowTextarea(!showTextarea)}
-            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <FileText className="w-4 h-4" />
-            Paste Resume Text Directly
-            {showTextarea ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-          </button>
-          {showTextarea && (
-            <div className="mt-3 space-y-3">
-              <textarea
-                value={resumeText}
-                onChange={(e) => setResumeText(e.target.value)}
-                rows={8}
-                placeholder="Paste your resume content here..."
-                className="w-full px-4 py-3 bg-muted border border-border rounded-lg text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none"
-              />
-              <button onClick={handlePasteResume} className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:brightness-110 transition-all">
-                Analyze Text
-              </button>
+            <div className="flex items-center gap-4">
+              <div className="flex-1 h-px bg-border" />
+              <span className="text-xs text-muted-foreground uppercase tracking-wider">or</span>
+              <div className="flex-1 h-px bg-border" />
             </div>
-          )}
-        </div>
+
+            {/* LinkedIn */}
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 mb-1">
+                <Linkedin className="w-4 h-4 text-primary" />
+                <span className="text-sm text-muted-foreground">Paste LinkedIn Profile URL</span>
+              </div>
+              <div className="flex gap-2">
+                <input
+                  value={linkedinUrl}
+                  onChange={(e) => setLinkedinUrl(e.target.value)}
+                  placeholder="https://linkedin.com/in/yourname"
+                  className="flex-1 px-4 py-3 bg-muted border border-border rounded-lg text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                />
+                <button onClick={handleLinkedin} className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:brightness-110 transition-all">
+                  Import
+                </button>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <div className="flex-1 h-px bg-border" />
+              <span className="text-xs text-muted-foreground uppercase tracking-wider">or</span>
+              <div className="flex-1 h-px bg-border" />
+            </div>
+
+            {/* Paste text */}
+            <div>
+              <button
+                onClick={() => setShowTextarea(!showTextarea)}
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <FileText className="w-4 h-4" />
+                Paste Resume Text Directly
+                {showTextarea ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              </button>
+              {showTextarea && (
+                <div className="mt-3 space-y-3">
+                  <textarea
+                    value={resumeText}
+                    onChange={(e) => setResumeText(e.target.value)}
+                    rows={8}
+                    placeholder="Paste your resume content here..."
+                    className="w-full px-4 py-3 bg-muted border border-border rounded-lg text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none"
+                  />
+                  <button
+                    onClick={handlePasteResume}
+                    disabled={!resumeText.trim()}
+                    className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:brightness-110 transition-all disabled:opacity-40"
+                  >
+                    Analyze Text
+                  </button>
+                </div>
+              )}
+            </div>
+          </>
+        )}
       </div>
 
       {/* Right panel */}
@@ -231,7 +263,6 @@ const StepUpload = ({ onNext }: StepUploadProps) => {
             </div>
           ))}
         </div>
-        {/* Blurred sample resume */}
         <div className="card-surface p-5 relative overflow-hidden">
           <div className="blur-sm select-none pointer-events-none space-y-2">
             <div className="h-4 bg-muted-foreground/20 rounded w-1/2" />

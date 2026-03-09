@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from "react";
+import type { ParsedResume, SkillGapAnalysis, GeneratedRoadmap } from "@/lib/ai";
 
 export interface AnalyzeData {
   // Step 1
@@ -18,6 +19,10 @@ export interface AnalyzeData {
   learningStyles?: string[];
   studentStatus?: string;
   budget?: number;
+  // AI Results
+  parsedResume?: ParsedResume;
+  skillAnalysis?: SkillGapAnalysis;
+  generatedRoadmap?: GeneratedRoadmap;
 }
 
 interface AnalyzeContextType {
