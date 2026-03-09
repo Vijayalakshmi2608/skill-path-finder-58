@@ -38,6 +38,7 @@ const RoadmapPage = () => {
         <ResourcesLibrary />
         <PortfolioCTA completedDays={completedDays.size} />
         <ProgressTracker completedDays={completedDays.size} streak={streak} />
+        <CertificateGenerator completedDays={completedDays.size} />
         <ShareExport />
       </main>
       <Footer />
