@@ -1,29 +1,27 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAnalyze } from "@/contexts/AnalyzeContext";
+import { analyzeSkills } from "@/lib/ai";
+import { toast } from "sonner";
 
 const statusMessages = [
   "📄 Parsing your resume...",
-  "🔍 Scanning 2,847 job listings for your dream role...",
+  "🔍 Scanning job listings for your dream role...",
   "🧠 AI analyzing skill requirements...",
   "📊 Calculating your gap score...",
   "🗺️ Building your personalized roadmap...",
   "✅ Analysis complete!",
 ];
 
-const dataCards = [
-  { text: "Found 47 required skills", delay: 1000 },
-  { text: "Matched 28 from your resume", delay: 2000 },
-  { text: "Building 30-day roadmap...", delay: 3000 },
-];
-
 const StepScanning = () => {
   const navigate = useNavigate();
-  const { data } = useAnalyze();
+  const { data, setData } = useAnalyze();
   const [msgIdx, setMsgIdx] = useState(0);
-  const [visibleCards, setVisibleCards] = useState(0);
   const [pulseScale, setPulseScale] = useState(1);
+  const [error, setError] = useState<string | null>(null);
+  const hasStarted = useRef(false);
 
+  // Cycle through status messages
   useEffect(() => {
     const interval = setInterval(() => {
       setMsgIdx((prev) => {
@@ -33,16 +31,11 @@ const StepScanning = () => {
         }
         return prev + 1;
       });
-    }, 1500);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    dataCards.forEach((_, i) => {
-      setTimeout(() => setVisibleCards((prev) => prev + 1), dataCards[i].delay);
-    });
-  }, []);
-
+  // Pulse animation
   useEffect(() => {
     const interval = setInterval(() => {
       setPulseScale((s) => (s === 1 ? 1.15 : 1));
@@ -50,13 +43,34 @@ const StepScanning = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Auto redirect after ~5 seconds
+  // Run AI analysis
   useEffect(() => {
-    const timer = setTimeout(() => {
-      navigate("/results");
-    }, 6000);
-    return () => clearTimeout(timer);
-  }, [navigate]);
+    if (hasStarted.current) return;
+    hasStarted.current = true;
+
+    const run = async () => {
+      try {
+        const result = await analyzeSkills({
+          skills: data.parsedResume?.skills || [],
+          jobTitle: data.jobTitle || "Software Engineer",
+          targetCompanies: data.targetCompanies,
+          experienceLevel: data.experienceLevel,
+          experience: data.parsedResume?.experience,
+          education: data.parsedResume?.education,
+        });
+
+        setData({ skillAnalysis: result });
+        // Navigate after a brief delay to show completion
+        setTimeout(() => navigate("/results"), 1500);
+      } catch (err: any) {
+        console.error("Analysis error:", err);
+        setError(err.message || "Analysis failed");
+        toast.error(err.message || "Analysis failed. Please try again.");
+      }
+    };
+
+    run();
+  }, [data, setData, navigate]);
 
   const jobTitle = data.jobTitle || "Software Engineer";
 
@@ -87,35 +101,29 @@ const StepScanning = () => {
 
       {/* Status message */}
       <div className="h-8 mb-8">
-        <p
-          key={msgIdx}
-          className="text-lg text-foreground font-medium animate-fade-in-up text-center"
-        >
-          {statusMessages[msgIdx]?.replace("your dream role", `${jobTitle}`)}
+        <p key={msgIdx} className="text-lg text-foreground font-medium animate-fade-in-up text-center">
+          {statusMessages[msgIdx]?.replace("your dream role", jobTitle)}
         </p>
       </div>
 
-      {/* Data cards */}
-      <div className="flex flex-col sm:flex-row gap-4">
-        {dataCards.map((card, i) => (
-          <div
-            key={i}
-            className={`card-surface px-6 py-4 transition-all duration-500 ${
-              i < visibleCards ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
+      {error ? (
+        <div className="mt-6 text-center">
+          <p className="text-destructive mb-4">{error}</p>
+          <button
+            onClick={() => navigate("/analyze")}
+            className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:brightness-110 transition-all"
           >
-            <p className="text-sm text-foreground font-medium">{card.text}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* Progress to completion */}
-      {msgIdx === statusMessages.length - 1 && (
-        <div className="mt-10 animate-fade-in-up">
-          <div className="text-4xl mb-3">🎉</div>
-          <p className="text-secondary font-heading font-bold text-lg">Analysis Complete!</p>
-          <p className="text-sm text-muted-foreground mt-1">Redirecting to your results...</p>
+            Try Again
+          </button>
         </div>
+      ) : (
+        msgIdx === statusMessages.length - 1 && !error && (
+          <div className="mt-10 animate-fade-in-up">
+            <div className="text-4xl mb-3">🎉</div>
+            <p className="text-secondary font-heading font-bold text-lg">Analysis Complete!</p>
+            <p className="text-sm text-muted-foreground mt-1">Redirecting to your results...</p>
+          </div>
+        )
       )}
     </div>
   );
