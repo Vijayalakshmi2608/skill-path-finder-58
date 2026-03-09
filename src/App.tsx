@@ -9,6 +9,7 @@ import ResultsPage from "./pages/ResultsPage";
 import RoadmapPage from "./pages/RoadmapPage";
 import ChatPage from "./pages/ChatPage";
 import CollegeDashboard from "./pages/CollegeDashboard";
+import MarketIntelligence from "./pages/MarketIntelligence";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
