@@ -6,6 +6,7 @@ import CompetitiveAnalysis from "@/components/results/CompetitiveAnalysis";
 import QuickWins from "@/components/results/QuickWins";
 import InterviewPredictor from "@/components/results/InterviewPredictor";
 import CompanyReadiness from "@/components/results/CompanyReadiness";
+import CareerTree from "@/components/results/CareerTree";
 import { useNavigate } from "react-router-dom";
 
 const floatingWords = [
