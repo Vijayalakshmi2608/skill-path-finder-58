@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
 import PageTransition from "./components/PageTransition";
 import Index from "./pages/Index";
 import AnalyzePage from "./pages/AnalyzePage";
@@ -17,6 +18,8 @@ import PortfolioPage from "./pages/PortfolioPage";
 import LeaderboardPage from "./pages/LeaderboardPage";
 import ResumeAnalysisPage from "./pages/ResumeAnalysisPage";
 import ApiPage from "./pages/ApiPage";
+import AuthPage from "./pages/AuthPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,23 +32,27 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={wrap(<Index />)} />
-          <Route path="/analyze" element={wrap(<AnalyzePage />)} />
-          <Route path="/results" element={wrap(<ResultsPage />)} />
-          <Route path="/roadmap" element={wrap(<RoadmapPage />)} />
-          <Route path="/chat" element={wrap(<ChatPage />)} />
-          <Route path="/college-dashboard" element={wrap(<CollegeDashboard />)} />
-          <Route path="/market-intelligence" element={wrap(<MarketIntelligence />)} />
-          <Route path="/mock-interview" element={wrap(<MockInterviewPage />)} />
-          <Route path="/study-buddy" element={wrap(<StudyBuddyPage />)} />
-          <Route path="/portfolio" element={wrap(<PortfolioPage />)} />
-          <Route path="/leaderboard" element={wrap(<LeaderboardPage />)} />
-          <Route path="/resume-analysis" element={wrap(<ResumeAnalysisPage />)} />
-          <Route path="/api" element={wrap(<ApiPage />)} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={wrap(<Index />)} />
+            <Route path="/analyze" element={wrap(<AnalyzePage />)} />
+            <Route path="/results" element={wrap(<ResultsPage />)} />
+            <Route path="/roadmap" element={wrap(<RoadmapPage />)} />
+            <Route path="/chat" element={wrap(<ChatPage />)} />
+            <Route path="/college-dashboard" element={wrap(<CollegeDashboard />)} />
+            <Route path="/market-intelligence" element={wrap(<MarketIntelligence />)} />
+            <Route path="/mock-interview" element={wrap(<MockInterviewPage />)} />
+            <Route path="/study-buddy" element={wrap(<StudyBuddyPage />)} />
+            <Route path="/portfolio" element={wrap(<PortfolioPage />)} />
+            <Route path="/leaderboard" element={wrap(<LeaderboardPage />)} />
+            <Route path="/resume-analysis" element={wrap(<ResumeAnalysisPage />)} />
+            <Route path="/api" element={wrap(<ApiPage />)} />
+            <Route path="/auth" element={wrap(<AuthPage />)} />
+            <Route path="/reset-password" element={wrap(<ResetPasswordPage />)} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

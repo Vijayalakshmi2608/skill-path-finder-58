@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Menu, X, ChevronDown, LogOut, User } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, signOut, loading } = useAuth();
   const isHome = location.pathname === "/";
 
   useEffect(() => {
@@ -25,6 +28,11 @@ const Navbar = () => {
     { label: "Leaderboard", path: "/leaderboard" },
     { label: "API", path: "/api" },
   ];
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/");
+  };
 
   return (
     <nav
@@ -93,15 +101,40 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <button className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground border border-border rounded-lg transition-colors duration-200">
-            Sign In
-          </button>
-          <Link
-            to="/analyze"
-            className="px-5 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-lg glow-box-blue hover:brightness-110 transition-all duration-200"
-          >
-            Analyze My Skills
-          </Link>
+          {!loading && (
+            <>
+              {user ? (
+                <>
+                  <span className="text-sm text-muted-foreground flex items-center gap-1.5">
+                    <User size={14} />
+                    {user.email?.split("@")[0]}
+                  </span>
+                  <button
+                    onClick={handleSignOut}
+                    className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground border border-border rounded-lg transition-colors duration-200 flex items-center gap-1.5"
+                  >
+                    <LogOut size={14} />
+                    Sign Out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/auth"
+                    className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground border border-border rounded-lg transition-colors duration-200"
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    to="/analyze"
+                    className="px-5 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-lg glow-box-blue hover:brightness-110 transition-all duration-200"
+                  >
+                    Analyze My Skills
+                  </Link>
+                </>
+              )}
+            </>
+          )}
         </div>
 
         <button className="md:hidden text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
@@ -132,7 +165,7 @@ const Navbar = () => {
           </Link>
 
           <div className="border-t border-border mt-2 pt-2">
-            <p className="text-xs text-muted-foreground/60 uppercase tracking-wider mb-1 px-0">Tools</p>
+            <p className="text-xs text-muted-foreground/60 uppercase tracking-wider mb-1">Tools</p>
             {tools.map((t) => (
               <Link
                 key={t.path}
@@ -148,14 +181,31 @@ const Navbar = () => {
           </div>
 
           <div className="flex flex-col gap-2 mt-3 border-t border-border pt-3">
-            <button className="px-4 py-2 text-sm text-muted-foreground border border-border rounded-lg">Sign In</button>
-            <Link
-              to="/analyze"
-              className="px-5 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-lg text-center"
-              onClick={() => setMobileOpen(false)}
-            >
-              Analyze My Skills
-            </Link>
+            {user ? (
+              <button
+                onClick={() => { handleSignOut(); setMobileOpen(false); }}
+                className="px-4 py-2 text-sm text-muted-foreground border border-border rounded-lg flex items-center gap-1.5 justify-center"
+              >
+                <LogOut size={14} /> Sign Out
+              </button>
+            ) : (
+              <>
+                <Link
+                  to="/auth"
+                  className="px-4 py-2 text-sm text-muted-foreground border border-border rounded-lg text-center"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/analyze"
+                  className="px-5 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-lg text-center"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Analyze My Skills
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}
