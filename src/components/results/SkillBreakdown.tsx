@@ -10,10 +10,14 @@ interface Skill {
   usage?: number;
 }
 
-interface SkillCategoryProps {
+interface SkillCategoryData {
   icon: string;
   title: string;
   skills: Skill[];
+}
+
+interface SkillBreakdownProps {
+  categories?: { name: string; icon: string; skills: { name: string; status: "strong" | "learning" | "missing"; percent: number; reason?: string }[] }[];
 }
 
 const statusConfig = {
@@ -22,7 +26,7 @@ const statusConfig = {
   missing: { badge: "❌ Missing", barColor: "bg-destructive", badgeColor: "bg-destructive/15 text-destructive border-destructive/30" },
 };
 
-const SkillCategory = ({ icon, title, skills }: SkillCategoryProps) => {
+const SkillCategory = ({ icon, title, skills }: SkillCategoryData) => {
   const [expanded, setExpanded] = useState(true);
 
   return (
@@ -51,11 +55,6 @@ const SkillCategory = ({ icon, title, skills }: SkillCategoryProps) => {
                   <span className={cn("px-2.5 py-0.5 text-xs font-medium rounded-full border", cfg.badgeColor)}>
                     {cfg.badge}
                   </span>
-                  {skill.usage && (
-                    <span className="text-xs text-muted-foreground hidden sm:block" title={`Used in ${skill.usage}% of job listings`}>
-                      📊 {skill.usage}% of listings
-                    </span>
-                  )}
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
@@ -83,66 +82,45 @@ const SkillCategory = ({ icon, title, skills }: SkillCategoryProps) => {
   );
 };
 
-const skillData: SkillCategoryProps[] = [
-  {
-    icon: "🖥️",
-    title: "Programming Languages",
-    skills: [
-      { name: "Python", status: "strong", pct: 90, usage: 89 },
-      { name: "JavaScript", status: "strong", pct: 85, usage: 82 },
-      { name: "Java", status: "learning", pct: 45, usage: 67 },
-      { name: "Go", status: "missing", pct: 0, note: "Critical for Google backend roles", usage: 58 },
-      { name: "C++", status: "missing", pct: 0, usage: 43 },
-    ],
-  },
-  {
-    icon: "📊",
-    title: "Data & ML",
-    skills: [
-      { name: "SQL", status: "strong", pct: 80, usage: 76 },
-      { name: "Machine Learning", status: "missing", pct: 0, note: "HIGH PRIORITY — Required in 81% of listings", usage: 81 },
-      { name: "TensorFlow", status: "missing", pct: 0, usage: 52 },
-      { name: "Data Structures", status: "strong", pct: 88, usage: 94 },
-    ],
-  },
-  {
-    icon: "☁️",
-    title: "Cloud & DevOps",
-    skills: [
-      { name: "AWS", status: "missing", pct: 0, note: "Required in 73% of Google SWE roles", usage: 73 },
-      { name: "Docker", status: "learning", pct: 30, usage: 69 },
-      { name: "Kubernetes", status: "missing", pct: 0, usage: 54 },
-      { name: "CI/CD", status: "missing", pct: 0, usage: 62 },
-    ],
-  },
-  {
-    icon: "🔧",
-    title: "Tools & Frameworks",
-    skills: [
-      { name: "React", status: "strong", pct: 92, usage: 71 },
-      { name: "Node.js", status: "strong", pct: 75, usage: 65 },
-      { name: "GraphQL", status: "missing", pct: 0, usage: 38 },
-      { name: "Redis", status: "missing", pct: 0, usage: 41 },
-    ],
-  },
-];
+const SkillBreakdown = ({ categories }: SkillBreakdownProps) => {
+  const skillData: SkillCategoryData[] = categories && categories.length > 0
+    ? categories.map(cat => ({
+        icon: cat.icon,
+        title: cat.name,
+        skills: cat.skills.map(s => ({
+          name: s.name,
+          status: s.status,
+          pct: s.percent,
+          note: s.reason,
+        })),
+      }))
+    : [];
 
-const SkillBreakdown = () => (
-  <div className="space-y-4">
-    <div className="flex items-center gap-6 mb-6">
-      <div className="flex items-center gap-2">
-        <div className="w-3 h-3 rounded-full bg-secondary" />
-        <span className="text-xs text-muted-foreground">Your Current Skills</span>
+  if (skillData.length === 0) {
+    return (
+      <div className="card-surface p-8 text-center">
+        <p className="text-muted-foreground">No skill analysis data available. Complete the analysis first.</p>
       </div>
-      <div className="flex items-center gap-2">
-        <div className="w-3 h-3 rounded-full bg-primary" />
-        <span className="text-xs text-muted-foreground">Required for This Role</span>
+    );
+  }
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-6 mb-6">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-secondary" />
+          <span className="text-xs text-muted-foreground">Your Current Skills</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-primary" />
+          <span className="text-xs text-muted-foreground">Required for This Role</span>
+        </div>
       </div>
+      {skillData.map((cat) => (
+        <SkillCategory key={cat.title} {...cat} />
+      ))}
     </div>
-    {skillData.map((cat) => (
-      <SkillCategory key={cat.title} {...cat} />
-    ))}
-  </div>
-);
+  );
+};
 
 export default SkillBreakdown;
