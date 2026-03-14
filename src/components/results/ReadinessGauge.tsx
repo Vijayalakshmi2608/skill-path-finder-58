@@ -3,6 +3,10 @@ import { cn } from "@/lib/utils";
 
 interface ReadinessGaugeProps {
   score: number;
+  matchedCount?: number;
+  totalSkills?: number;
+  missingCount?: number;
+  learningCount?: number;
 }
 
 const getZone = (score: number) => {
@@ -11,7 +15,7 @@ const getZone = (score: number) => {
   return { label: "Job Ready", emoji: "🎉", color: "text-secondary", strokeColor: "hsl(160, 84%, 39%)" };
 };
 
-const ReadinessGauge = ({ score }: ReadinessGaugeProps) => {
+const ReadinessGauge = ({ score, matchedCount = 0, totalSkills = 0, missingCount = 0, learningCount = 0 }: ReadinessGaugeProps) => {
   const [animatedScore, setAnimatedScore] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
@@ -65,9 +69,9 @@ const ReadinessGauge = ({ score }: ReadinessGaugeProps) => {
         </p>
         <div className="flex flex-wrap justify-center lg:justify-start gap-4">
           {[
-            { icon: "✅", label: "Skills Matched", value: "28/47", color: "text-secondary" },
-            { icon: "⚠️", label: "Skills to Learn", value: "12", color: "text-amber-400" },
-            { icon: "❌", label: "Critical Gaps", value: "7", color: "text-destructive" },
+            { icon: "✅", label: "Skills Matched", value: `${matchedCount}/${totalSkills}`, color: "text-secondary" },
+            { icon: "⚠️", label: "Skills to Learn", value: `${learningCount}`, color: "text-amber-400" },
+            { icon: "❌", label: "Critical Gaps", value: `${missingCount}`, color: "text-destructive" },
           ].map((s) => (
             <div key={s.label} className="card-surface px-4 py-3 min-w-[120px]">
               <div className="text-xs text-muted-foreground mb-1">{s.icon} {s.label}</div>

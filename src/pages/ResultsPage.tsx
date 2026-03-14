@@ -8,14 +8,29 @@ import InterviewPredictor from "@/components/results/InterviewPredictor";
 import CompanyReadiness from "@/components/results/CompanyReadiness";
 import CareerTree from "@/components/results/CareerTree";
 import { useNavigate } from "react-router-dom";
-
-const floatingWords = [
-  "Python", "React", "Docker", "ML", "AWS", "SQL", "Kubernetes", "GraphQL",
-  "TypeScript", "Node.js", "CI/CD", "Redis", "Go", "System Design", "TensorFlow",
-];
+import { useAnalyze } from "@/contexts/AnalyzeContext";
 
 const ResultsPage = () => {
   const navigate = useNavigate();
+  const { data } = useAnalyze();
+
+  const userName = data.detectedName || data.parsedResume?.name || "User";
+  const jobTitle = data.jobTitle || "Software Engineer";
+  const experienceLevel = data.experienceLevel || "Entry Level";
+  const analysis = data.skillAnalysis;
+  const readinessScore = analysis?.readiness_score ?? 0;
+  const matchedSkills = analysis?.matched_skills ?? [];
+  const missingSkills = analysis?.missing_skills ?? [];
+  const quickWins = analysis?.top_3_quick_wins ?? [];
+  const competitivePercentile = analysis?.competitive_percentile ?? 0;
+  const overallFeedback = analysis?.overall_feedback ?? "";
+  const skillCategories = analysis?.skill_categories ?? [];
+  const radarData = analysis?.radar_data ?? [];
+  const userSkills = data.detectedSkills ?? data.parsedResume?.skills?.map(s => s.name) ?? [];
+
+  const floatingWords = userSkills.length > 0
+    ? userSkills.slice(0, 15)
+    : ["Python", "React", "Docker", "ML", "AWS", "SQL", "Kubernetes", "GraphQL", "TypeScript", "Node.js"];
 
   return (
     <div className="min-h-screen bg-background">
@@ -62,14 +77,17 @@ const ResultsPage = () => {
             <div>
               <p className="text-sm text-muted-foreground mb-1">Your SkillScan Report</p>
               <h1 className="text-3xl sm:text-4xl font-heading font-extrabold text-foreground mb-2">
-                Rahul Sharma
+                {userName}
               </h1>
               <div className="flex flex-wrap items-center gap-3">
                 <span className="px-3 py-1.5 text-sm rounded-full bg-primary/15 text-primary border border-primary/30 font-medium">
-                  Software Engineer @ Google — Entry Level
+                  {jobTitle} — {experienceLevel}
                 </span>
                 <span className="text-xs text-muted-foreground">Generated {new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
               </div>
+              {overallFeedback && (
+                <p className="text-sm text-muted-foreground mt-3 max-w-xl">{overallFeedback}</p>
+              )}
             </div>
             <div className="flex flex-wrap gap-3">
               <button className="flex items-center gap-2 px-4 py-2.5 text-sm border border-border rounded-lg text-muted-foreground hover:text-foreground hover:border-muted-foreground/50 transition-all">
@@ -96,7 +114,13 @@ const ResultsPage = () => {
           <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-8">
             Overall Readiness Score
           </h2>
-          <ReadinessGauge score={64} />
+          <ReadinessGauge
+            score={readinessScore}
+            matchedCount={matchedSkills.length}
+            totalSkills={matchedSkills.length + missingSkills.length}
+            missingCount={missingSkills.filter(s => s.priority === "critical").length}
+            learningCount={missingSkills.filter(s => s.priority !== "critical").length}
+          />
         </div>
       </section>
 
@@ -110,14 +134,14 @@ const ResultsPage = () => {
             Your Complete Skill Analysis
           </h2>
           <p className="text-muted-foreground mb-8">Every skill ranked and compared against real job requirements</p>
-          <SkillBreakdown />
+          <SkillBreakdown categories={skillCategories} />
         </div>
       </section>
 
       {/* SECTION 4 — Radar Chart */}
       <section className="py-16 border-b border-border">
         <div className="section-container max-w-3xl">
-          <SkillRadar />
+          <SkillRadar radarData={radarData} />
         </div>
       </section>
 
@@ -128,7 +152,7 @@ const ResultsPage = () => {
             How You Compare to Other Applicants
           </h2>
           <p className="text-muted-foreground mb-8">Based on analysis of applicant pools for similar roles</p>
-          <CompetitiveAnalysis />
+          <CompetitiveAnalysis percentile={competitivePercentile} />
         </div>
       </section>
 
@@ -136,15 +160,15 @@ const ResultsPage = () => {
       <section className="py-16 border-b border-border">
         <div className="section-container">
           <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-2">
-            ⚡ 3 Skills That Will Boost Your Score the Most
+            ⚡ Skills That Will Boost Your Score the Most
           </h2>
           <p className="text-muted-foreground mb-8">High impact, low effort — the fastest way to close your gap</p>
-          <QuickWins />
+          <QuickWins wins={quickWins} />
         </div>
       </section>
 
       {/* SECTION 6.6 — Career Tree */}
-      <CareerTree />
+      <CareerTree userSkills={userSkills} />
 
       {/* SECTION 6.5 — Interview Predictor */}
       <section className="py-16 border-b border-border bg-surface-secondary">
