@@ -43,17 +43,44 @@ const StepUpload = ({ onNext }: StepUploadProps) => {
     }
   }, [setData]);
 
+  const extractTextFromPdf = useCallback(async (file: File): Promise<string> => {
+    const pdfjsLib = await import("pdfjs-dist");
+    pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    const pages: string[] = [];
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      pages.push(content.items.map((item: any) => item.str).join(" "));
+    }
+    return pages.join("\n");
+  }, []);
+
   const handleFile = useCallback(
-    (file: File) => {
+    async (file: File) => {
       setData({ fileName: file.name });
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const text = e.target?.result as string;
-        if (text) processResume(text);
-      };
-      reader.readAsText(file);
+      setLoading(true);
+      try {
+        let text: string;
+        if (file.name.toLowerCase().endsWith(".pdf")) {
+          text = await extractTextFromPdf(file);
+        } else {
+          text = await file.text();
+        }
+        if (!text.trim()) {
+          toast.error("Could not extract text from file. Try pasting your resume text instead.");
+          setLoading(false);
+          return;
+        }
+        await processResume(text);
+      } catch (err: any) {
+        console.error("File read error:", err);
+        toast.error("Failed to read file. Try pasting your resume text instead.");
+        setLoading(false);
+      }
     },
-    [setData, processResume]
+    [setData, processResume, extractTextFromPdf]
   );
 
   const onDrop = (e: React.DragEvent) => {
