@@ -168,7 +168,7 @@ const ResultsPage = () => {
       </section>
 
       {/* SECTION 6.6 — Career Tree */}
-      <CareerTree userSkills={userSkills} />
+      <CareerTree />
 
       {/* SECTION 6.5 — Interview Predictor */}
       <section className="py-16 border-b border-border bg-surface-secondary">
