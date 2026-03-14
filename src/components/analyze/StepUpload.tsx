@@ -4,6 +4,9 @@ import { useAnalyze } from "@/contexts/AnalyzeContext";
 import { cn } from "@/lib/utils";
 import { parseResume } from "@/lib/ai";
 import { toast } from "sonner";
+import * as pdfjsLib from "pdfjs-dist";
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js`;
 
 interface StepUploadProps {
   onNext: () => void;
