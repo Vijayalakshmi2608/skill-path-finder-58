@@ -1,12 +1,13 @@
 # 🎯 SkillScan
 ### *Know your gap. Close it fast.*
 
-> An AI-powered career gap analyzer that tells students **exactly** what stands between them and their dream job — and builds a personalized roadmap to close it in 30 days.
+> An AI-powered career intelligence platform that tells students **exactly** what stands between them and their dream job — and gives them everything they need to close it in 30 days.
 
 [![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-SkillScan-FF6B6B?style=for-the-badge)](https://skill-path-finder-58.lovable.app/)
 [![GitHub](https://img.shields.io/badge/GitHub-Vijayalakshmi2608-181717?style=for-the-badge&logo=github)](https://github.com/Vijayalakshmi2608)
 [![Track](https://img.shields.io/badge/Track-Education_/_EdTech-00D4AA?style=for-the-badge)]()
 [![AI](https://img.shields.io/badge/Powered_by-Gemini_AI-4285F4?style=for-the-badge&logo=google)]()
+
 
 ---
 
@@ -17,6 +18,7 @@
 | **75%** of graduates | Apply to jobs without knowing their skill gaps |
 | **1 in 3** students | Get rejected due to missing keywords on resume |
 | **68%** never find out | Why they were rejected |
+| **47%** of engineers | Not job-ready at graduation (NASSCOM) |
 | **₹0** spent | On understanding what employers actually want |
 
 Students graduate with degrees but zero clarity on what employers need right now. They apply to 100 jobs, get rejected from 97, and never find out why.
@@ -27,7 +29,7 @@ Students graduate with degrees but zero clarity on what employers need right now
 
 ## 💡 Solution
 
-SkillScan is a **fully deployed AI career intelligence platform** that scans resumes, identifies skill gaps, generates personalized learning roadmaps, and scores job matches — giving students everything they need to go from graduate to hired.
+SkillScan is a **fully deployed AI career intelligence platform** with 7 powerful features — from resume scanning to AI mock interviews to salary intelligence — giving students everything they need to go from graduate to hired.
 
 ```
 Upload Resume
@@ -42,14 +44,18 @@ Gap Score + Priority Skill Ranking
       ↓
 30-Day Personalized Skill Roadmap
       ↓
-Paste Any Job Description
+AI Mock Interview + Salary Intelligence
       ↓
-Job Match Score % + Apply with Confidence ✅
+LinkedIn Profile Optimized
+      ↓
+Paste Any Job Description → Match Score
+      ↓
+Apply with Confidence ✅ Get Hired
 ```
 
 ---
 
-## ✨ Features
+## ✨ Features — All 7
 
 | Feature | Description |
 |---------|-------------|
@@ -57,6 +63,9 @@ Job Match Score % + Apply with Confidence ✅
 | 🔍 **AI Career Gap Analyzer** | Compares student skills vs real market demand for any target role |
 | 🗺️ **Skill Roadmap Generator** | Auto-generates personalized 30-day learning plan with daily tasks + resources |
 | 🎯 **Job Match Score** | Paste any JD → instant match % → green (have it) vs red (missing) skills |
+| 🎤 **AI Interview Simulator** | Live AI mock interview → scored across 3 dimensions → detailed feedback |
+| 💰 **Salary Intelligence Engine** | Current vs projected salary → skill-by-skill salary impact → negotiation script |
+| 🔗 **LinkedIn Profile Analyzer** | AI scores every LinkedIn section → exact rewrites → keyword density analysis |
 
 ---
 
@@ -70,6 +79,7 @@ AI Engine         Google Gemini Flash
 Backend           Supabase (PostgreSQL + Realtime)
 Auth              Supabase Auth + Row Level Security
 PDF Parsing       Browser File API + Gemini Vision
+Voice Input       Web Speech API (browser-native)
 Deployment        Lovable Cloud (Netlify CDN)
 Version Control   GitHub
 ```
@@ -83,6 +93,7 @@ Version Control   GitHub
 │              FRONTEND LAYER                 │
 │   React 18 · TypeScript · Tailwind CSS      │
 │   Framer Motion · Recharts                  │
+│   Web Speech API (voice interview)          │
 │         Deployed: Lovable + Netlify         │
 └──────────────────┬──────────────────────────┘
                    ↓
@@ -93,8 +104,12 @@ Version Control   GitHub
 │  • Skill gap classification                 │
 │  • Priority ranking by hiring demand        │
 │  • 30-day roadmap generation                │
-│  • JD skill extraction                      │
-│  • Match % calculation                      │
+│  • JD skill extraction + match scoring      │
+│  • Interview question generation            │
+│  • Answer evaluation (3 dimensions)         │
+│  • Salary range calculation per skill       │
+│  • LinkedIn section scoring + rewrites      │
+│  • Rejection pattern analysis               │
 └──────────────────┬──────────────────────────┘
                    ↓
 ┌─────────────────────────────────────────────┐
@@ -103,13 +118,16 @@ Version Control   GitHub
 │  • Student skill profiles                   │
 │  • Resume scan history                      │
 │  • Roadmap progress tracking                │
+│  • Interview session history                │
+│  • Salary intelligence cache               │
+│  • LinkedIn analysis history               │
 │  • Job match score history                  │
 └─────────────────────────────────────────────┘
 ```
 
 ---
 
-## 📄 Resume Scanner
+## 📄 Feature 1 — Resume Scanner
 
 SkillScan's Resume Scanner gives students a brutally honest score with actionable fixes:
 
@@ -130,7 +148,7 @@ Top Fix: Change "worked on projects" to
 
 ---
 
-## 🔍 Career Gap Analyzer
+## 🔍 Feature 2 — Career Gap Analyzer
 
 The core engine of SkillScan — compares student profile against real market requirements:
 
@@ -141,7 +159,7 @@ Your Readiness: 43/100 🔴
 
 Missing Skills (Priority Order):
 1. 🔴 Machine Learning    — Not started    (HIGH priority)
-2. 🔴 SQL Advanced        — Not started    (HIGH priority)  
+2. 🔴 SQL Advanced        — Not started    (HIGH priority)
 3. 🟡 Python Libraries    — Basic only     (MED priority)
 4. 🟡 Data Visualization  — Partial        (MED priority)
 5. 🟢 Communication       — Strong         (✅ You have this)
@@ -152,7 +170,7 @@ SQL → Pandas → Matplotlib → ML Basics → Projects
 
 ---
 
-## 🗺️ Skill Roadmap Generator
+## 🗺️ Feature 3 — Skill Roadmap Generator
 
 Auto-generated personalized learning plan based on gap analysis:
 
@@ -165,7 +183,7 @@ Week 1–2: SQL Fundamentals
   Goal: Write complex JOIN queries confidently
 
 Week 3: Pandas & NumPy
-  Daily: 1.5 hours  
+  Daily: 1.5 hours
   Resource: Kaggle Python Course (free)
   Goal: Clean and analyze a real dataset
 
@@ -180,7 +198,7 @@ Gap score improvement: 43% → 71%
 
 ---
 
-## 🎯 Job Match Score
+## 🎯 Feature 4 — Job Match Score
 
 Paste any job description — get instant match intelligence:
 
@@ -192,7 +210,7 @@ Your Match Score: 67% 🟡
 
 ✅ Skills You Have (Apply These in Cover Letter):
   • Python (Basic)
-  • Excel Advanced  
+  • Excel Advanced
   • Communication
   • Problem Solving
 
@@ -204,6 +222,141 @@ Your Match Score: 67% 🟡
 Recommendation:
 Close these 3 gaps first → reapply in 4 weeks
 Projected match after roadmap: 89% ✅
+```
+
+---
+
+## 🎤 Feature 5 — AI Interview Simulator
+
+Live AI mock interview with real-time scoring and detailed feedback:
+
+```
+Interview Setup:
+  Role: Data Scientist
+  Level: Fresher
+  Type: Mixed (Technical + HR)
+  Questions: 8 per session
+  Time: 2 minutes per answer
+
+Live Evaluation per Answer:
+  Relevance     ████████░░ 8.0/10
+  Clarity       ███████░░░ 7.0/10
+  Technical     █████████░ 9.0/10
+  Overall       ████████░░ 8.0/10
+
+Keywords Detected:  ✅ supervised learning
+                    ✅ training data
+                    ✅ classification
+
+Keywords Missed:    ❌ overfitting
+                    ❌ cross-validation
+
+Post-Interview Report:
+  Overall Score: 74/100 🟡 Good
+  Strongest: Q8 — Project Discussion (8.9/10)
+  Weakest:   Q4 — System Design (4.2/10)
+  Top 3 improvements flagged
+  Sample ideal answers provided
+```
+
+**How It Works:**
+- Student selects role, level, and interview type
+- Gemini AI generates 8 realistic interview questions
+- Student answers by typing or speaking (Web Speech API)
+- AI evaluates each answer across 3 dimensions
+- Full report generated with improvement roadmap
+
+---
+
+## 💰 Feature 6 — Salary Intelligence Engine
+
+Know exactly what your skills are worth — and what closing gaps will earn you:
+
+```
+Current Market Value (based on skill profile):
+  ₹3.2 – ₹4.8 LPA
+  Percentile: Top 34% of freshers
+
+After 30-Day Roadmap Completion:
+  ₹6.5 – ₹9.2 LPA ✨
+  Increase: +₹2.8 LPA minimum
+  ROI: 87% salary jump in 30 days
+
+Skill-by-Skill Salary Impact:
+  Machine Learning   → +₹2.1 LPA 🔴 Missing
+  SQL Advanced       → +₹1.2 LPA 🔴 Missing
+  Tableau            → +₹0.8 LPA 🔴 Missing
+  Python Advanced    → +₹0.8 LPA 🟡 Partial
+  Communication      → +₹0.4 LPA ✅ Have it
+
+City-wise Comparison (Data Scientist):
+  Bangalore  → ₹8.5 LPA avg (2,847 openings)
+  Mumbai     → ₹7.8 LPA avg (1,923 openings)
+  Hyderabad  → ₹7.2 LPA avg (1,654 openings)
+  Chennai    → ₹6.2 LPA avg (987 openings)
+
+AI Negotiation Script: Generated per student
+based on their skills, market data, and target
+```
+
+---
+
+## 🔗 Feature 7 — LinkedIn Profile Analyzer
+
+AI scores every LinkedIn section and gives exact rewrites:
+
+```
+LinkedIn Profile Score: 58/100 🟡 Needs Work
+
+Section Scores:
+  📝 Headline         6/10  ⚠️ Weak
+  📖 About Section    5/10  ❌ Poor
+  💼 Experience       7/10  ✅ Good
+  🛠️ Skills Listed    4/10  ❌ Poor
+  🎓 Education        8/10  ✅ Good
+  🏆 Achievements     3/10  ❌ Missing
+
+Recruiter Click Probability: 38% → 81% after fixes
+
+Keyword Analysis:
+  Present: ✅ Python · ✅ Data Analysis
+  Missing: ❌ Machine Learning · ❌ SQL
+           ❌ Data Science · ❌ Statistics
+
+Time to 80+ score: ~2 hours
+Recruiter visibility increase: +340%
+
+AI generates:
+  • Rewritten headline
+  • Rewritten About section
+  • Missing skills list
+  • Priority fix checklist
+```
+
+---
+
+## 🔬 Gap Score Algorithm
+
+```
+Career Readiness Score = Weighted Skill Match
+
+For each required skill in target role:
+  if student has skill at STRONG level  → full points
+  if student has skill at PARTIAL level → half points
+  if student has skill at NONE level    → zero points
+
+Gap Score = (Points Earned / Total Points) × 100
+
+Priority Ranking = Hiring Frequency × Skill Weight
+  (Skills in 80%+ of JDs  = HIGH priority)
+  (Skills in 40–80% of JDs = MED priority)
+  (Skills in <40% of JDs   = LOW priority)
+
+Readiness Zones:
+  0–30%   🔴 Not Ready — close gaps first
+  31–60%  🟠 Getting There — targeted learning needed
+  61–80%  🟡 Almost Ready — polish and apply selectively
+  81–100% 🟢 Job Ready — apply with confidence
 ```
 
 ---
@@ -247,7 +400,7 @@ VITE_GEMINI_API_KEY=your_gemini_api_key
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+Open [http://localhost:5173](http://localhost:5173)
 
 ---
 
@@ -257,46 +410,23 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 skillscan/
 ├── src/
 │   ├── components/
-│   │   ├── resume/           # Resume upload + scoring
-│   │   ├── gap-analyzer/     # Career gap analysis
-│   │   ├── roadmap/          # 30-day roadmap generator
-│   │   ├── job-match/        # JD paste + match score
-│   │   └── dashboard/        # Student progress overview
-│   ├── pages/                # Route-level pages
-│   ├── hooks/                # Custom React hooks
-│   ├── lib/                  # Supabase + Gemini config
-│   ├── types/                # TypeScript interfaces
-│   └── utils/                # Gap scoring algorithm
+│   │   ├── resume/               # Resume upload + scoring
+│   │   ├── gap-analyzer/         # Career gap analysis
+│   │   ├── roadmap/              # 30-day roadmap generator
+│   │   ├── job-match/            # JD paste + match score
+│   │   ├── interview-simulator/  # AI mock interview
+│   │   ├── salary-intelligence/  # Salary engine + negotiation
+│   │   ├── linkedin-analyzer/    # LinkedIn profile scoring
+│   │   └── dashboard/            # Student progress overview
+│   ├── pages/                    # Route-level pages
+│   ├── hooks/                    # Custom React hooks
+│   ├── lib/                      # Supabase + Gemini config
+│   ├── types/                    # TypeScript interfaces
+│   └── utils/                    # Gap scoring algorithm
 ├── supabase/
-│   └── migrations/           # Database schema
+│   └── migrations/               # Database schema
 ├── public/
 └── README.md
-```
-
----
-
-## 🔬 Gap Score Algorithm
-
-```
-Career Readiness Score = Weighted Skill Match
-
-For each required skill in target role:
-  if student has skill at STRONG level  → full points
-  if student has skill at PARTIAL level → half points
-  if student has skill at NONE level    → zero points
-
-Gap Score = (Points Earned / Total Points) × 100
-
-Priority Ranking = Hiring Frequency × Skill Weight
-  (Skills appearing in 80%+ of JDs = HIGH priority)
-  (Skills appearing in 40–80% = MED priority)
-  (Skills appearing in <40% = LOW priority)
-
-Readiness Zones:
-  0–30%   🔴 Not Ready — close gaps first
-  31–60%  🟠 Getting There — targeted learning needed
-  61–80%  🟡 Almost Ready — polish and apply selectively
-  81–100% 🟢 Job Ready — apply with confidence
 ```
 
 ---
@@ -317,6 +447,14 @@ Readiness Zones:
 - **College Placement Cells** — ₹500/student/year
 - **Gross margin at scale** — 91%
 
+### Impact Calculation
+```
+India: 8M engineering graduates/year
+1% adoption = 80,000 students helped
+30% hiring improvement = 24,000 extra hires
+Every hire = one family changed
+```
+
 ---
 
 
@@ -327,20 +465,23 @@ Readiness Zones:
 - [x] AI Career Gap Analyzer
 - [x] 30-Day Skill Roadmap Generator
 - [x] Job Match Score
+- [x] AI Interview Simulator
+- [x] Salary Intelligence Engine
+- [x] LinkedIn Profile Analyzer
 
 ### Phase 2 — 3 Months
-- [ ] LinkedIn profile analyzer
-- [ ] AI mock interview simulator
+- [ ] Smart Application Tracker + rejection patterns
+- [ ] Certification Recommender
 - [ ] College placement dashboard
 - [ ] WhatsApp skill check bot
 - [ ] Mobile app (React Native)
 
 ### Phase 3 — 6–12 Months
 - [ ] 500K student skill dataset
-- [ ] Salary predictor per skill
+- [ ] Salary predictor per skill combination
 - [ ] Industry partner integrations
 - [ ] API for placement cells
-- [ ] Corporate hiring intelligence
+- [ ] Corporate hiring intelligence product
 
 ---
 
@@ -350,6 +491,15 @@ Readiness Zones:
 - **LinkedIn Talent Trends** — Skills gaps are #1 hiring barrier globally
 - **McKinsey** — 87% of companies report skill gaps in new hires
 - **World Economic Forum** — 50% of all employees need reskilling by 2025
+
+---
+
+## 👩‍💻 Developer
+
+**Vijayalakshmi S**
+- GitHub: [@Vijayalakshmi2608](https://github.com/Vijayalakshmi2608)
+- Devpost: [24cse179](https://devpost.com/24cse179)
+- Live App: [skill-path-finder-58.lovable.app](https://skill-path-finder-58.lovable.app/)
 
 ---
 
@@ -363,6 +513,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 - [Google Gemini](https://deepmind.google/technologies/gemini/) — AI intelligence layer
 - [Supabase](https://supabase.com) — Backend and database
+- [Lovable.dev](https://lovable.dev) — Rapid full-stack development
 - [NASSCOM](https://nasscom.in) — Skills gap research data
 
 ---
