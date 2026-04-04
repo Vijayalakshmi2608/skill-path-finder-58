@@ -21,6 +21,7 @@ import ResumeAnalysisPage from "./pages/ResumeAnalysisPage";
 import ApiPage from "./pages/ApiPage";
 import AuthPage from "./pages/AuthPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
+import InterviewSimulatorPage from "./pages/InterviewSimulatorPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
