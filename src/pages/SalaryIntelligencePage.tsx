@@ -44,8 +44,8 @@ const SalaryIntelligencePage = () => {
   const [script, setScript] = useState("");
   const [copied, setCopied] = useState(false);
 
-  const skills = analysisResult?.skills?.map((s: any) => s.name) || [];
-  const missingSkills = analysisResult?.missingSkills?.map((s: any) => (typeof s === "string" ? s : s.name)) || [];
+  const skills = analyzeData?.detectedSkills || [];
+  const missingSkills = analyzeData?.skillAnalysis?.missingSkills?.map((s: any) => (typeof s === "string" ? s : s.name)) || [];
 
   const handleAnalyze = async () => {
     setLoading(true);
