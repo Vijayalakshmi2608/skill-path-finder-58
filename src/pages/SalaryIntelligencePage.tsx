@@ -29,8 +29,8 @@ const AnimatedNumber = ({ value, prefix = "", suffix = "", decimals = 1 }: { val
 
 const SalaryIntelligencePage = () => {
   const { toast } = useToast();
-  const { analysisResult } = useAnalyze();
-  const [role, setRole] = useState(analysisResult?.targetRole || "Data Scientist");
+  const { data: analyzeData } = useAnalyze();
+  const [role, setRole] = useState(analyzeData?.jobTitle || "Data Scientist");
   const [experience, setExperience] = useState("Fresher");
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<any>(null);
