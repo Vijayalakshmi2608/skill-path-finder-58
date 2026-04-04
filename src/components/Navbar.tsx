@@ -26,6 +26,8 @@ const Navbar = () => {
     { label: "Interview Simulator", path: "/interview-simulator" },
     { label: "Study Buddy", path: "/study-buddy" },
     { label: "Portfolio", path: "/portfolio" },
+    { label: "Salary Intelligence", path: "/salary-intelligence" },
+    { label: "LinkedIn Analyzer", path: "/linkedin-analyzer" },
     { label: "Leaderboard", path: "/leaderboard" },
     { label: "API", path: "/api" },
   ];

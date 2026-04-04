@@ -53,6 +53,8 @@ const App = () => (
               <Route path="/resume-analysis" element={wrap(<ResumeAnalysisPage />)} />
               <Route path="/api" element={wrap(<ApiPage />)} />
               <Route path="/interview-simulator" element={wrap(<InterviewSimulatorPage />)} />
+              <Route path="/salary-intelligence" element={wrap(<SalaryIntelligencePage />)} />
+              <Route path="/linkedin-analyzer" element={wrap(<LinkedInAnalyzerPage />)} />
               <Route path="/auth" element={wrap(<AuthPage />)} />
               <Route path="/reset-password" element={wrap(<ResetPasswordPage />)} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
