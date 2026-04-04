@@ -23,6 +23,7 @@ const Navbar = () => {
   const tools = [
     { label: "Resume Analysis", path: "/resume-analysis" },
     { label: "Mock Interview", path: "/mock-interview" },
+    { label: "Interview Simulator", path: "/interview-simulator" },
     { label: "Study Buddy", path: "/study-buddy" },
     { label: "Portfolio", path: "/portfolio" },
     { label: "Leaderboard", path: "/leaderboard" },
