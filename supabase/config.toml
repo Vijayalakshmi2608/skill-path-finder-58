@@ -29,3 +29,15 @@ verify_jwt = false
 
 [functions.linkedin-analyzer]
 verify_jwt = false
+
+[functions.rejection-analysis]
+verify_jwt = false
+
+[functions.cert-recommender]
+verify_jwt = false
+
+[functions.interview-simulator]
+verify_jwt = false
+
+[functions.mock-interview]
+verify_jwt = false

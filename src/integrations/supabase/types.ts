@@ -14,6 +14,96 @@ export type Database = {
   }
   public: {
     Tables: {
+      applications: {
+        Row: {
+          company: string
+          created_at: string
+          date_applied: string
+          id: string
+          match_score: number | null
+          notes: string | null
+          role: string
+          salary_offered: number | null
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          company: string
+          created_at?: string
+          date_applied?: string
+          id?: string
+          match_score?: number | null
+          notes?: string | null
+          role: string
+          salary_offered?: number | null
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          company?: string
+          created_at?: string
+          date_applied?: string
+          id?: string
+          match_score?: number | null
+          notes?: string | null
+          role?: string
+          salary_offered?: number | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      certifications: {
+        Row: {
+          completion_percent: number
+          cost: string | null
+          created_at: string
+          duration: string | null
+          gaps_closed: string[] | null
+          id: string
+          name: string
+          platform: string
+          salary_impact: number | null
+          status: string
+          updated_at: string
+          url: string | null
+          user_id: string
+        }
+        Insert: {
+          completion_percent?: number
+          cost?: string | null
+          created_at?: string
+          duration?: string | null
+          gaps_closed?: string[] | null
+          id?: string
+          name: string
+          platform: string
+          salary_impact?: number | null
+          status?: string
+          updated_at?: string
+          url?: string | null
+          user_id: string
+        }
+        Update: {
+          completion_percent?: number
+          cost?: string | null
+          created_at?: string
+          duration?: string | null
+          gaps_closed?: string[] | null
+          id?: string
+          name?: string
+          platform?: string
+          salary_impact?: number | null
+          status?: string
+          updated_at?: string
+          url?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
