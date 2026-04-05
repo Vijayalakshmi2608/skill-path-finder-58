@@ -10,12 +10,12 @@ serve(async (req) => {
 
   try {
     const { action, role, level, interviewType, answer, question, keyConcepts } = await req.json();
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+    const OPENROUTER_API_KEY = Deno.env.get("OPENROUTER_API_KEY");
+    if (!OPENROUTER_API_KEY) throw new Error("OPENROUTER_API_KEY is not configured");
 
-    const gateway = "https://ai.gateway.lovable.dev/v1/chat/completions";
+    const gateway = "https://openrouter.ai/api/v1/chat/completions";
     const headers = {
-      Authorization: `Bearer ${LOVABLE_API_KEY}`,
+      Authorization: `Bearer ${OPENROUTER_API_KEY}`,
       "Content-Type": "application/json",
     };
 
@@ -24,7 +24,7 @@ serve(async (req) => {
         method: "POST",
         headers,
         body: JSON.stringify({
-          model: "google/gemini-3-flash-preview",
+          model: "google/gemma-4-27b-it",
           messages: [
             {
               role: "system",
@@ -90,7 +90,7 @@ serve(async (req) => {
         method: "POST",
         headers,
         body: JSON.stringify({
-          model: "google/gemini-3-flash-preview",
+          model: "google/gemma-4-27b-it",
           messages: [
             {
               role: "system",
