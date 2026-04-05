@@ -1,7 +1,7 @@
 # 🎯 SkillScan
 ### *Know your gap. Close it fast.*
 
-> An AI-powered career intelligence platform that tells students **exactly** what stands between them and their dream job — and gives them everything they need to close it in 30 days.
+> The world's most complete AI career intelligence platform — 9 powerful features that take students from rejected to hired in 30 days.
 
 [![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-SkillScan-FF6B6B?style=for-the-badge)](https://skill-path-finder-58.lovable.app/)
 [![GitHub](https://img.shields.io/badge/GitHub-Vijayalakshmi2608-181717?style=for-the-badge&logo=github)](https://github.com/Vijayalakshmi2608)
@@ -29,7 +29,7 @@ Students graduate with degrees but zero clarity on what employers need right now
 
 ## 💡 Solution
 
-SkillScan is a **fully deployed AI career intelligence platform** with 7 powerful features — from resume scanning to AI mock interviews to salary intelligence — giving students everything they need to go from graduate to hired.
+SkillScan is a **fully deployed AI career intelligence platform** with **9 powerful features** — from resume scanning to AI mock interviews to salary intelligence to application tracking — giving students everything they need to go from graduate to hired.
 
 ```
 Upload Resume
@@ -48,24 +48,28 @@ AI Mock Interview + Salary Intelligence
       ↓
 LinkedIn Profile Optimized
       ↓
-Paste Any Job Description → Match Score
+Certification Roadmap Generated
+      ↓
+Application Tracker + Rejection Pattern AI
       ↓
 Apply with Confidence ✅ Get Hired
 ```
 
 ---
 
-## ✨ Features — All 7
+## ✨ All 9 Features
 
-| Feature | Description |
-|---------|-------------|
-| 📄 **Resume Scanner** | AI scores resume 0–100, flags weak sections, gives exact rewrite suggestions |
-| 🔍 **AI Career Gap Analyzer** | Compares student skills vs real market demand for any target role |
-| 🗺️ **Skill Roadmap Generator** | Auto-generates personalized 30-day learning plan with daily tasks + resources |
-| 🎯 **Job Match Score** | Paste any JD → instant match % → green (have it) vs red (missing) skills |
-| 🎤 **AI Interview Simulator** | Live AI mock interview → scored across 3 dimensions → detailed feedback |
-| 💰 **Salary Intelligence Engine** | Current vs projected salary → skill-by-skill salary impact → negotiation script |
-| 🔗 **LinkedIn Profile Analyzer** | AI scores every LinkedIn section → exact rewrites → keyword density analysis |
+| # | Feature | Description |
+|---|---------|-------------|
+| 1 | 📄 **Resume Scanner** | AI scores resume 0–100, flags weak sections, gives exact rewrite suggestions |
+| 2 | 🔍 **AI Career Gap Analyzer** | Compares student skills vs real market demand for any target role |
+| 3 | 🗺️ **Skill Roadmap Generator** | Auto-generates personalized 30-day learning plan with daily tasks + resources |
+| 4 | 🎯 **Job Match Score** | Paste any JD → instant match % → green (have it) vs red (missing) skills |
+| 5 | 🎤 **AI Interview Simulator** | Live AI mock interview → scored across 3 dimensions → detailed feedback per answer |
+| 6 | 💰 **Salary Intelligence Engine** | Current vs projected salary → skill-by-skill impact → city comparison → negotiation script |
+| 7 | 🔗 **LinkedIn Profile Analyzer** | AI scores every section → exact rewrites → keyword density → recruiter probability |
+| 8 | 📊 **Smart Application Tracker** | Track all applications → AI detects rejection patterns → optimize future applications |
+| 9 | 🏆 **Certification Recommender** | Top certifications ranked by salary impact → free vs paid → progress tracker |
 
 ---
 
@@ -103,13 +107,14 @@ Version Control   GitHub
 │  • Resume weakness detection                │
 │  • Skill gap classification                 │
 │  • Priority ranking by hiring demand        │
-│  • 30-day roadmap generation                │
-│  • JD skill extraction + match scoring      │
+│  • 30-day roadmap constraint scheduling     │
+│  • JD semantic parsing + match scoring      │
 │  • Interview question generation            │
 │  • Answer evaluation (3 dimensions)         │
 │  • Salary range calculation per skill       │
 │  • LinkedIn section scoring + rewrites      │
-│  • Rejection pattern analysis               │
+│  • Rejection pattern detection              │
+│  • Certification ROI ranking                │
 └──────────────────┬──────────────────────────┘
                    ↓
 ┌─────────────────────────────────────────────┐
@@ -121,6 +126,8 @@ Version Control   GitHub
 │  • Interview session history                │
 │  • Salary intelligence cache               │
 │  • LinkedIn analysis history               │
+│  • Job application records                  │
+│  • Certification progress tracking          │
 │  • Job match score history                  │
 └─────────────────────────────────────────────┘
 ```
@@ -128,8 +135,6 @@ Version Control   GitHub
 ---
 
 ## 📄 Feature 1 — Resume Scanner
-
-SkillScan's Resume Scanner gives students a brutally honest score with actionable fixes:
 
 ```
 Resume Score Breakdown:
@@ -150,19 +155,16 @@ Top Fix: Change "worked on projects" to
 
 ## 🔍 Feature 2 — Career Gap Analyzer
 
-The core engine of SkillScan — compares student profile against real market requirements:
-
 ```
 Target Role: Data Scientist
-
 Your Readiness: 43/100 🔴
 
 Missing Skills (Priority Order):
-1. 🔴 Machine Learning    — Not started    (HIGH priority)
-2. 🔴 SQL Advanced        — Not started    (HIGH priority)
-3. 🟡 Python Libraries    — Basic only     (MED priority)
-4. 🟡 Data Visualization  — Partial        (MED priority)
-5. 🟢 Communication       — Strong         (✅ You have this)
+1. 🔴 Machine Learning    — Not started    (HIGH)
+2. 🔴 SQL Advanced        — Not started    (HIGH)
+3. 🟡 Python Libraries    — Basic only     (MED)
+4. 🟡 Data Visualization  — Partial        (MED)
+5. 🟢 Communication       — Strong         (✅ Have)
 
 Learn in this order for fastest hiring impact:
 SQL → Pandas → Matplotlib → ML Basics → Projects
@@ -171,8 +173,6 @@ SQL → Pandas → Matplotlib → ML Basics → Projects
 ---
 
 ## 🗺️ Feature 3 — Skill Roadmap Generator
-
-Auto-generated personalized learning plan based on gap analysis:
 
 ```
 YOUR 30-DAY DATA SCIENTIST ROADMAP
@@ -200,27 +200,20 @@ Gap score improvement: 43% → 71%
 
 ## 🎯 Feature 4 — Job Match Score
 
-Paste any job description — get instant match intelligence:
-
 ```
 Job: Senior Data Analyst @ TechCorp
-Source: LinkedIn Job Posting
 
 Your Match Score: 67% 🟡
 
-✅ Skills You Have (Apply These in Cover Letter):
-  • Python (Basic)
-  • Excel Advanced
-  • Communication
-  • Problem Solving
+✅ Skills You Have:
+  • Python (Basic) · Excel Advanced
+  • Communication · Problem Solving
 
 ❌ Skills Standing Between You and This Job:
-  • SQL Advanced    → Add to roadmap (2 weeks)
-  • Tableau         → Add to roadmap (1 week)
-  • Statistics      → Add to roadmap (1 week)
+  • SQL Advanced    → roadmap (2 weeks)
+  • Tableau         → roadmap (1 week)
+  • Statistics      → roadmap (1 week)
 
-Recommendation:
-Close these 3 gaps first → reapply in 4 weeks
 Projected match after roadmap: 89% ✅
 ```
 
@@ -228,15 +221,10 @@ Projected match after roadmap: 89% ✅
 
 ## 🎤 Feature 5 — AI Interview Simulator
 
-Live AI mock interview with real-time scoring and detailed feedback:
-
 ```
 Interview Setup:
-  Role: Data Scientist
-  Level: Fresher
-  Type: Mixed (Technical + HR)
-  Questions: 8 per session
-  Time: 2 minutes per answer
+  Role: Data Scientist | Level: Fresher
+  Type: Mixed | Questions: 8 | Time: 2min each
 
 Live Evaluation per Answer:
   Relevance     ████████░░ 8.0/10
@@ -244,43 +232,31 @@ Live Evaluation per Answer:
   Technical     █████████░ 9.0/10
   Overall       ████████░░ 8.0/10
 
-Keywords Detected:  ✅ supervised learning
-                    ✅ training data
-                    ✅ classification
-
-Keywords Missed:    ❌ overfitting
-                    ❌ cross-validation
+Keywords Found: ✅ supervised learning
+                ✅ training data ✅ classification
+Keywords Missed: ❌ overfitting ❌ cross-validation
 
 Post-Interview Report:
-  Overall Score: 74/100 🟡 Good
-  Strongest: Q8 — Project Discussion (8.9/10)
-  Weakest:   Q4 — System Design (4.2/10)
-  Top 3 improvements flagged
-  Sample ideal answers provided
+  Overall: 74/100 🟡 Good
+  Best: Q8 Project Discussion (8.9/10)
+  Worst: Q4 System Design (4.2/10)
+  Top 3 improvements + ideal answers provided
 ```
 
 **How It Works:**
-- Student selects role, level, and interview type
-- Gemini AI generates 8 realistic interview questions
+- Gemini AI generates 8 role-specific questions
 - Student answers by typing or speaking (Web Speech API)
 - AI evaluates each answer across 3 dimensions
-- Full report generated with improvement roadmap
+- Full post-interview report with improvement roadmap
 
 ---
 
 ## 💰 Feature 6 — Salary Intelligence Engine
 
-Know exactly what your skills are worth — and what closing gaps will earn you:
-
 ```
-Current Market Value (based on skill profile):
-  ₹3.2 – ₹4.8 LPA
-  Percentile: Top 34% of freshers
-
-After 30-Day Roadmap Completion:
-  ₹6.5 – ₹9.2 LPA ✨
-  Increase: +₹2.8 LPA minimum
-  ROI: 87% salary jump in 30 days
+Current Market Value:  ₹3.2 – ₹4.8 LPA
+After 30-Day Roadmap:  ₹6.5 – ₹9.2 LPA ✨
+ROI: 87% salary jump in 30 days
 
 Skill-by-Skill Salary Impact:
   Machine Learning   → +₹2.1 LPA 🔴 Missing
@@ -289,48 +265,101 @@ Skill-by-Skill Salary Impact:
   Python Advanced    → +₹0.8 LPA 🟡 Partial
   Communication      → +₹0.4 LPA ✅ Have it
 
-City-wise Comparison (Data Scientist):
-  Bangalore  → ₹8.5 LPA avg (2,847 openings)
-  Mumbai     → ₹7.8 LPA avg (1,923 openings)
-  Hyderabad  → ₹7.2 LPA avg (1,654 openings)
-  Chennai    → ₹6.2 LPA avg (987 openings)
+City-wise (Data Scientist):
+  Bangalore  → ₹8.5 LPA (2,847 openings)
+  Mumbai     → ₹7.8 LPA (1,923 openings)
+  Hyderabad  → ₹7.2 LPA (1,654 openings)
+  Chennai    → ₹6.2 LPA (987 openings)
 
-AI Negotiation Script: Generated per student
-based on their skills, market data, and target
++ AI Salary Negotiation Script generated
+  per student based on skills + market data
 ```
 
 ---
 
 ## 🔗 Feature 7 — LinkedIn Profile Analyzer
 
-AI scores every LinkedIn section and gives exact rewrites:
-
 ```
-LinkedIn Profile Score: 58/100 🟡 Needs Work
+LinkedIn Profile Score: 58/100 🟡
 
 Section Scores:
   📝 Headline         6/10  ⚠️ Weak
   📖 About Section    5/10  ❌ Poor
   💼 Experience       7/10  ✅ Good
-  🛠️ Skills Listed    4/10  ❌ Poor
+  🛠️ Skills Listed    4/10  ❌ Critical
   🎓 Education        8/10  ✅ Good
   🏆 Achievements     3/10  ❌ Missing
 
-Recruiter Click Probability: 38% → 81% after fixes
+Recruiter Click Probability:
+  Before fixes: 38%
+  After fixes:  81% (+340% visibility)
 
-Keyword Analysis:
+Keyword Gap:
   Present: ✅ Python · ✅ Data Analysis
   Missing: ❌ Machine Learning · ❌ SQL
            ❌ Data Science · ❌ Statistics
 
-Time to 80+ score: ~2 hours
-Recruiter visibility increase: +340%
+AI generates: Rewritten headline + About
+section + missing skills list + fix checklist
+```
 
-AI generates:
-  • Rewritten headline
-  • Rewritten About section
-  • Missing skills list
-  • Priority fix checklist
+---
+
+## 📊 Feature 8 — Smart Application Tracker
+
+```
+Application Pipeline Overview:
+  📤 Applied: 12  📞 Interviews: 4
+  ✅ Offers: 1    ❌ Rejected: 7
+
+  Success Rate: 8.3% (Industry avg: 6.2%) 🎯
+
+Kanban Board:
+  APPLIED → INTERVIEW → OFFER → REJECTED
+
+AI Rejection Pattern Analysis:
+  Pattern 1: Applied to roles requiring SQL
+  Advanced — caused 4 of 6 rejections.
+  → Add SQL to roadmap immediately
+
+  Pattern 2: Match score below 60% = rejection
+  → Stop applying below 65% threshold
+
+  Pattern 3: Match >75% → interview rate 3x higher
+
+AI Prediction:
+  Apply above 65% match → success rate: 34%
+  (up from current 8.3%)
+```
+
+---
+
+## 🏆 Feature 9 — Certification Recommender
+
+```
+Top Certifications Ranked by Salary Impact:
+
+1. IBM ML Certificate (Coursera)
+   Duration: 3 months | Free audit available
+   Salary Impact: +₹2.1 LPA
+   Gaps Closed: Machine Learning + Python
+   Recruiter Recognition: High ⭐
+
+2. Google Data Analytics (Coursera)
+   Duration: 6 months | Free audit available
+   Salary Impact: +₹1.2 LPA
+   Gaps Closed: SQL + Data Analysis
+   Recruiter Recognition: Very High ⭐
+
+3. AWS Cloud Practitioner (AWS Official)
+   Duration: 1 month | ₹12,000 exam fee
+   Salary Impact: +₹1.8 LPA
+   Gaps Closed: Cloud fundamentals
+   Recruiter Recognition: Very High ⭐
+
+Total salary impact from top 3: +₹5.1 LPA
+Filter: [All] [Free Only] [Under ₹5K] [Premium]
+Track progress per certification with badges
 ```
 
 ---
@@ -341,22 +370,22 @@ AI generates:
 Career Readiness Score = Weighted Skill Match
 
 For each required skill in target role:
-  if student has skill at STRONG level  → full points
-  if student has skill at PARTIAL level → half points
-  if student has skill at NONE level    → zero points
+  STRONG level  → full points  (1.0)
+  PARTIAL level → half points  (0.5)
+  NONE level    → zero points  (0.0)
 
 Gap Score = (Points Earned / Total Points) × 100
 
 Priority Ranking = Hiring Frequency × Skill Weight
-  (Skills in 80%+ of JDs  = HIGH priority)
-  (Skills in 40–80% of JDs = MED priority)
-  (Skills in <40% of JDs   = LOW priority)
+  Skills in 80%+ of JDs  = HIGH priority
+  Skills in 40–80% of JDs = MED priority
+  Skills in <40% of JDs   = LOW priority
 
 Readiness Zones:
-  0–30%   🔴 Not Ready — close gaps first
-  31–60%  🟠 Getting There — targeted learning needed
-  61–80%  🟡 Almost Ready — polish and apply selectively
-  81–100% 🟢 Job Ready — apply with confidence
+  0–30%   🔴 Not Ready
+  31–60%  🟠 Getting There
+  61–80%  🟡 Almost Ready
+  81–100% 🟢 Job Ready — apply now
 ```
 
 ---
@@ -417,6 +446,8 @@ skillscan/
 │   │   ├── interview-simulator/  # AI mock interview
 │   │   ├── salary-intelligence/  # Salary engine + negotiation
 │   │   ├── linkedin-analyzer/    # LinkedIn profile scoring
+│   │   ├── application-tracker/  # Job tracking + patterns
+│   │   ├── certifications/       # Cert recommender + tracker
 │   │   └── dashboard/            # Student progress overview
 │   ├── pages/                    # Route-level pages
 │   ├── hooks/                    # Custom React hooks
@@ -450,13 +481,12 @@ skillscan/
 ### Impact Calculation
 ```
 India: 8M engineering graduates/year
-1% adoption = 80,000 students helped
-30% hiring improvement = 24,000 extra hires
-Every hire = one family changed
+1% adoption   = 80,000 students helped
+30% improvement = 24,000 extra hires/year
+Every hire    = one family changed
 ```
 
 ---
-
 
 ## 🔮 Roadmap
 
@@ -468,13 +498,15 @@ Every hire = one family changed
 - [x] AI Interview Simulator
 - [x] Salary Intelligence Engine
 - [x] LinkedIn Profile Analyzer
+- [x] Smart Application Tracker
+- [x] Certification Recommender
 
 ### Phase 2 — 3 Months
-- [ ] Smart Application Tracker + rejection patterns
-- [ ] Certification Recommender
-- [ ] College placement dashboard
-- [ ] WhatsApp skill check bot
+- [ ] College placement cell dashboard
+- [ ] WhatsApp daily skill check bot
 - [ ] Mobile app (React Native)
+- [ ] Resume builder from scratch
+- [ ] Company-specific interview prep
 
 ### Phase 3 — 6–12 Months
 - [ ] 500K student skill dataset
@@ -498,7 +530,6 @@ Every hire = one family changed
 
 **Vijayalakshmi S**
 - GitHub: [@Vijayalakshmi2608](https://github.com/Vijayalakshmi2608)
-- Devpost: [24cse179](https://devpost.com/24cse179)
 - Live App: [skill-path-finder-58.lovable.app](https://skill-path-finder-58.lovable.app/)
 
 ---
@@ -523,7 +554,7 @@ This project is open source and available under the [MIT License](LICENSE).
 **The gap between a student and their dream job**
 **is not talent. It's information.**
 
-**SkillScan closes that gap.**
+**SkillScan closes that gap — all 9 ways.**
 
 ⭐ Star this repo if SkillScan inspires you to build for student careers!
 
