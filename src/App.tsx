@@ -57,6 +57,8 @@ const App = () => (
               <Route path="/interview-simulator" element={wrap(<InterviewSimulatorPage />)} />
               <Route path="/salary-intelligence" element={wrap(<SalaryIntelligencePage />)} />
               <Route path="/linkedin-analyzer" element={wrap(<LinkedInAnalyzerPage />)} />
+              <Route path="/application-tracker" element={wrap(<ApplicationTrackerPage />)} />
+              <Route path="/certifications" element={wrap(<CertificationsPage />)} />
               <Route path="/auth" element={wrap(<AuthPage />)} />
               <Route path="/reset-password" element={wrap(<ResetPasswordPage />)} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

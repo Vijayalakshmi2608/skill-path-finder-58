@@ -28,6 +28,8 @@ const Navbar = () => {
     { label: "Portfolio", path: "/portfolio" },
     { label: "Salary Intelligence", path: "/salary-intelligence" },
     { label: "LinkedIn Analyzer", path: "/linkedin-analyzer" },
+    { label: "Application Tracker", path: "/application-tracker" },
+    { label: "Certifications", path: "/certifications" },
     { label: "Leaderboard", path: "/leaderboard" },
     { label: "API", path: "/api" },
   ];

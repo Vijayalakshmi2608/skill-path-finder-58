@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Trophy, Loader2, ExternalLink, Star, Clock, DollarSign, CheckCircle, Lock, Play, Filter } from "lucide-react";
+import { Trophy, Loader2, ExternalLink, Star, Clock, DollarSign, CheckCircle, Lock, Play, Filter, Plus } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts";
 import Navbar from "@/components/Navbar";
 import { supabase } from "@/integrations/supabase/client";
