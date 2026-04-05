@@ -11,8 +11,8 @@ serve(async (req) => {
   try {
     const { skills, jobTitle, targetCompanies, experienceLevel, experience, education } = await req.json();
 
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+    const OPENROUTER_API_KEY = Deno.env.get("OPENROUTER_API_KEY");
+    if (!OPENROUTER_API_KEY) throw new Error("OPENROUTER_API_KEY is not configured");
 
     const userPrompt = `
 Candidate Skills: ${JSON.stringify(skills)}
@@ -23,14 +23,14 @@ Target Companies: ${(targetCompanies || []).join(", ") || "Any"}
 Experience Level: ${experienceLevel || "Entry Level"}
 `;
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        Authorization: `Bearer ${OPENROUTER_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-3-flash-preview",
+        model: "google/gemma-4-27b-it",
         messages: [
           {
             role: "system",
