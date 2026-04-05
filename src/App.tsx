@@ -24,6 +24,8 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import InterviewSimulatorPage from "./pages/InterviewSimulatorPage";
 import SalaryIntelligencePage from "./pages/SalaryIntelligencePage";
 import LinkedInAnalyzerPage from "./pages/LinkedInAnalyzerPage";
+import ApplicationTrackerPage from "./pages/ApplicationTrackerPage";
+import CertificationsPage from "./pages/CertificationsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
