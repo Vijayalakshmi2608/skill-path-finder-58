@@ -6,7 +6,7 @@
 [![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-SkillScan-FF6B6B?style=for-the-badge)](https://skill-path-finder-58.lovable.app/)
 [![GitHub](https://img.shields.io/badge/GitHub-Vijayalakshmi2608-181717?style=for-the-badge&logo=github)](https://github.com/Vijayalakshmi2608)
 [![Track](https://img.shields.io/badge/Track-Education_/_EdTech-00D4AA?style=for-the-badge)]()
-[![AI](https://img.shields.io/badge/Powered_by-Gemini_AI-4285F4?style=for-the-badge&logo=google)]()
+
 
 
 ---
