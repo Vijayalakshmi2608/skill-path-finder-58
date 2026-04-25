@@ -41,3 +41,6 @@ verify_jwt = false
 
 [functions.mock-interview]
 verify_jwt = false
+
+[functions.enhance-features]
+verify_jwt = false
