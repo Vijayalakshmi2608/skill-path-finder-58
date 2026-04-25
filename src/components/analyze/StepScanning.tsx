@@ -60,6 +60,7 @@ const StepScanning = () => {
         });
 
         setData({ skillAnalysis: result });
+        try { (await import("@/components/LiveImpactCounter")).bumpAnalyzedCounter(); } catch { /* ignore */ }
         // Navigate after a brief delay to show completion
         setTimeout(() => navigate("/results"), 1500);
       } catch (err: any) {
