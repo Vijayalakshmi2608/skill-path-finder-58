@@ -6,7 +6,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-const MODEL = "google/gemma-2-27b-it";
+const MODEL = "google/gemma-4-27b-it";
 const GATEWAY = "https://openrouter.ai/api/v1/chat/completions";
 
 async function callTool(systemMsg: string, userMsg: string, toolName: string, parameters: Record<string, unknown>) {

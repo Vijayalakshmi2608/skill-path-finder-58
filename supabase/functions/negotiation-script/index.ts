@@ -40,7 +40,7 @@ serve(async (req) => {
       method: "POST",
       headers: { Authorization: `Bearer ${OPENROUTER_API_KEY}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: "google/gemma-2-27b-it",
+        model: "google/gemma-4-27b-it",
         messages: [
           { role: "system", content: "You are a salary negotiation coach. Generate a professional, confident negotiation script for an Indian tech professional. Keep it natural and conversational. Return only the script text, no JSON." },
           { role: "user", content: `Generate a salary negotiation script:

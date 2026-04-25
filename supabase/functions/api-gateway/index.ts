@@ -33,7 +33,7 @@ serve(async (req) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "google/gemma-2-27b-it",
+          model: "google/gemma-4-27b-it",
           messages: [
             { role: "system", content: "You are a job market expert. Return required skills for the given role." },
             { role: "user", content: `What skills are required for a "${jobTitle}" role?` },
@@ -102,7 +102,7 @@ serve(async (req) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "google/gemma-2-27b-it",
+          model: "google/gemma-4-27b-it",
           messages: [
             { role: "system", content: "You are an expert career analyst. Analyze skill gaps for the given role and return structured data." },
             { role: "user", content: `Analyze these skills for a "${job_title}" role (${experience_level || "entry"} level):\n${JSON.stringify(skills)}` },
@@ -149,7 +149,7 @@ serve(async (req) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "google/gemma-2-27b-it",
+          model: "google/gemma-4-27b-it",
           messages: [
             { role: "system", content: "You are a tech industry analyst. Return the top trending skills for this month based on current market data." },
             { role: "user", content: `What are the top trending tech skills for ${new Date().toLocaleString("en-US", { month: "long", year: "numeric" })}?` },

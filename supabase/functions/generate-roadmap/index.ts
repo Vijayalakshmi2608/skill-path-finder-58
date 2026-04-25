@@ -55,7 +55,7 @@ Create a detailed 30-day learning roadmap. Include rest days every 7th day. Each
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemma-2-27b-it",
+        model: "google/gemma-4-27b-it",
         messages: [
           {
             role: "system",
