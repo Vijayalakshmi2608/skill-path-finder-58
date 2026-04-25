@@ -43,7 +43,7 @@ serve(async (req) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "google/gemma-4-27b-it",
+          model: "google/gemma-2-27b-it",
           messages: [
             {
               role: "system",
@@ -109,7 +109,7 @@ serve(async (req) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "google/gemma-4-27b-it",
+          model: "google/gemma-2-27b-it",
           messages: [
             {
               role: "system",
