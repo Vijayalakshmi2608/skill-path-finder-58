@@ -6,15 +6,15 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-const MODEL = "google/gemma-4-27b-it";
-const GATEWAY = "https://openrouter.ai/api/v1/chat/completions";
+const MODEL = "google/gemini-2.5-flash";
+const GATEWAY = "https://ai.gateway.lovable.dev/v1/chat/completions";
 
 async function callTool(systemMsg: string, userMsg: string, toolName: string, parameters: Record<string, unknown>) {
-  const OPENROUTER_API_KEY = Deno.env.get("OPENROUTER_API_KEY");
-  if (!OPENROUTER_API_KEY) throw new Error("OPENROUTER_API_KEY not configured");
+  const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+  if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
   const resp = await fetch(GATEWAY, {
     method: "POST",
-    headers: { Authorization: `Bearer ${OPENROUTER_API_KEY}`, "Content-Type": "application/json" },
+    headers: { Authorization: `Bearer ${LOVABLE_API_KEY}`, "Content-Type": "application/json" },
     body: JSON.stringify({
       model: MODEL,
       messages: [
