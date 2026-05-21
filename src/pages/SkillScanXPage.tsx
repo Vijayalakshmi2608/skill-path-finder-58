@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
-  Activity, Brain, Cpu, Github, MapPin, Network, Radar as RadarIcon, Rocket, Sparkles,
+  Activity, Brain, Cpu, Github, MapPin, Network, Rocket, Sparkles,
   TrendingUp, Users, Zap, Target, Eye, FileCode2, Map, Loader2, AlertCircle, RefreshCw,
-  ChevronRight, Award, Shield, Briefcase, GitBranch, Layers, ArrowRight, ArrowUpRight,
+  Shield, GitBranch, ArrowUpRight,
 } from "lucide-react";
 import {
   RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar,
