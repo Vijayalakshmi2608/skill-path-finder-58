@@ -21,6 +21,7 @@ const Navbar = () => {
   const homeLinks = ["How It Works", "Features", "Success Stories", "For Colleges"];
 
   const tools = [
+    { label: "🚀 SkillScan X (NEW)", path: "/skillscan-x" },
     { label: "✨ Enhanced AI Tools", path: "/enhanced" },
     { label: "Resume Analysis", path: "/resume-analysis" },
     { label: "Mock Interview", path: "/mock-interview" },

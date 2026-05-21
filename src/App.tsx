@@ -27,6 +27,7 @@ import LinkedInAnalyzerPage from "./pages/LinkedInAnalyzerPage";
 import ApplicationTrackerPage from "./pages/ApplicationTrackerPage";
 import CertificationsPage from "./pages/CertificationsPage";
 import EnhancedFeaturesPage from "./pages/EnhancedFeaturesPage";
+import SkillScanXPage from "./pages/SkillScanXPage";
 import NotFound from "./pages/NotFound";
 import RequireAuth from "./components/RequireAuth";
 
@@ -63,6 +64,7 @@ const App = () => (
               <Route path="/application-tracker" element={gated(<ApplicationTrackerPage />)} />
               <Route path="/certifications" element={gated(<CertificationsPage />)} />
               <Route path="/enhanced" element={gated(<EnhancedFeaturesPage />)} />
+              <Route path="/skillscan-x" element={gated(<SkillScanXPage />)} />
               <Route path="/auth" element={wrap(<AuthPage />)} />
               <Route path="/reset-password" element={wrap(<ResetPasswordPage />)} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
