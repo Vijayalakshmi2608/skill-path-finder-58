@@ -44,3 +44,6 @@ verify_jwt = false
 
 [functions.enhance-features]
 verify_jwt = false
+
+[functions.skillscan-x]
+verify_jwt = false
