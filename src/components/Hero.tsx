@@ -34,22 +34,26 @@ const Hero = () => {
     ))}
 
     <div className="section-container relative z-10 text-center max-w-4xl">
+      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 mb-6">
+        <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+        <span className="text-xs font-medium text-primary tracking-wider uppercase">Now with SkillScan X · Autonomous Employability Intelligence</span>
+      </div>
       <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-extrabold leading-[1.05] mb-6">
-        Stop Guessing.
+        Transform employability into
         <br />
-        <span className="text-primary glow-blue">Start Getting Hired.</span>
+        <span className="text-primary glow-blue">an optimization problem.</span>
       </h1>
       <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-        Upload your resume, pick your dream job — SkillScan's AI reveals exactly what's missing and builds your personal roadmap to close the gap in 30 days.
+        Multi-agent AI, graph intelligence, and predictive analytics — SkillScan X forecasts and optimizes your career like Google Maps for hiring.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <button onClick={() => navigate("/analyze")} className="group px-8 py-4 text-base font-semibold bg-primary text-primary-foreground rounded-lg glow-box-blue hover:brightness-110 transition-all duration-300 flex items-center gap-2">
-          Analyze My Resume Free
+        <button onClick={() => navigate("/skillscan-x")} className="group px-8 py-4 text-base font-semibold bg-primary text-primary-foreground rounded-lg glow-box-blue hover:brightness-110 transition-all duration-300 flex items-center gap-2">
+          Launch SkillScan X
           <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
         </button>
-        <button className="px-8 py-4 text-base font-medium text-muted-foreground border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300 flex items-center gap-2">
+        <button onClick={() => navigate("/analyze")} className="px-8 py-4 text-base font-medium text-muted-foreground border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300 flex items-center gap-2">
           <Play className="w-4 h-4" />
-          Watch 2-min Demo
+          Analyze Resume First
         </button>
       </div>
 
